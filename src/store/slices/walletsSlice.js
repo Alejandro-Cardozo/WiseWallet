@@ -40,10 +40,18 @@ const initialState = [
 const walletsSlice = createSlice({
   name: 'wallets',
   initialState,
-  reducers: {}
+  reducers: {
+    addWallet (state, action) {
+      state.push(action.payload)
+    }
+  }
 })
 
 // exported selectors
 export const selectAllWallets = (state) => state.wallets
 
+// exported actions
+export const { addWallet } = walletsSlice.actions
+
+// exported reducer
 export default walletsSlice.reducer
