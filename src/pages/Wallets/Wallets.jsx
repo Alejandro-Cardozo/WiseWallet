@@ -1,9 +1,11 @@
+// Components
+import WalletsList from '../../components/WalletsList'
+
 const Wallets = () => {
   return (
-    <div>
-      <h1>Wallets</h1>
-      <p>This are your wallets</p>
-    </div>
+    <>
+      <WalletsList />
+    </>
   )
 }
 
