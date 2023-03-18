@@ -1,8 +1,6 @@
 // Hooks
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// Utilities
-import { nanoid } from '@reduxjs/toolkit'
 // Helpers
 import { addWallet } from '../../store/slices/walletsSlice'
 // Components
@@ -21,14 +19,7 @@ const AddWalletForm = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (newWalletName && newWalletName.length >= 3 && newWalletName.length <= 25) {
-      dispatch(
-        addWallet({
-          id: nanoid(),
-          name: newWalletName,
-          balance: 0,
-          coins: []
-        })
-      )
+      dispatch(addWallet(newWalletName))
       setNewWalletName('')
       onClose()
     }
@@ -51,7 +42,7 @@ const AddWalletForm = ({ onClose }) => {
           value={newWalletName}
           onChange={handleNewWalletName}
         />
-        <Button>Create</Button>
+        <Button disabled={!newWalletName}>Create</Button>
       </form>
       <button onClick={onClose} className={classes.close}>
         X
