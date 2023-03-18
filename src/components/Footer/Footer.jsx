@@ -1,6 +1,11 @@
+// Styles
+import classes from './Footer.module.css'
+
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className={classes.footer}>
+      <p>Built and Designed by Alejandro Cardozo</p>
+    </footer>
   )
 }
 

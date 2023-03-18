@@ -2,13 +2,16 @@
 
 :root {
   /* COLOR VARIABLES */
-  --color-primary: #d3e5ff;
-  --color-primary-light: #e9f2ff;
+  --color-primary: #6383ea;
+  --color-primary-light: #a5b7f3;
+  --color-primary-dark: #183db4;
 
-  --color-secondary: #394657;
-  --color-secondary-light: #52647d;
+  --color-secondary: #6545a4;
+  --color-secondary-light: #8b6fc3;
+  --color-secondary-dark: #422d6c;
 
-  --color-white: #f5f9ff;
+  --color-light: #f6f8fe;
+  --color-dark: #060f2d;
 
   /* FONT VARIABLES */
   --font-primary: 'Red Hat Display', sans-serif;
@@ -25,12 +28,6 @@
   --line-height-sm: 1.2;
   --line-height-md: 1.5;
   --line-height-lg: 1.9;
-
-  /* BREAK POINTS VARIABLES */
-  --bp-largest: 75em; 
-  --bp-large: 62.5em; 
-  --bp-medium: 50em; 
-  --bp-small: 37.5em; 
 }
 
 *,
@@ -56,8 +53,9 @@ html {
 }
 
 body {
-  color: var(--color-grey-dark-2);
-  font-weight: 300;
+  color: var(--color-primary);
+  background-color: var(--color-light);
+  font-weight: 500;
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   -webkit-font-smoothing: antialiased;
@@ -130,25 +128,25 @@ a:visited {
   color: inherit;
 }
 
-@media only screen and (min-width: var(--bp-largest)) {
+@media only screen and (min-width: 1200px) {
   html {
     font-size: 75%;
   }
 }
 
-@media only screen and (max-width: var(--bp-large)) {
+@media only screen and (max-width: 1024px) {
   html {
     font-size: 62.5%;
   }
 }
 
-@media only screen and (max-width: var(--bp-medium)) {
+@media only screen and (max-width: 768px) {
   html {
     font-size: 56.25%;
   }
 }
 
-@media only screen and (max-width: var(--bp-small)) {
+@media only screen and (max-width: 480px) {
   html {
     font-size: 50%;
   }

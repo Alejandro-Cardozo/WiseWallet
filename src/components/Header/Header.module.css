@@ -1,0 +1,10 @@
+.header {
+  height: 10rem;
+  background-color: var(--color-primary-dark);
+  color: var(--color-light);
+  font-size: var(--font-size-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5rem;
+}
