@@ -43,10 +43,10 @@ const walletsSlice = createSlice({
   initialState,
   reducers: {
     addWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         state.push(action.payload)
       },
-      prepare (name) {
+      prepare(name) {
         return {
           payload: {
             id: nanoid(),
@@ -56,15 +56,28 @@ const walletsSlice = createSlice({
           }
         }
       }
+    },
+    editWallet: {
+      reducer(state, action) {
+        const { walletId, walletNewName } = action.payload
+        const existingWallet = state.find((wallet) => wallet.id === walletId)
+        if (existingWallet) {
+          existingWallet.name = walletNewName
+        } else {
+          console.log('not found')
+        }
+      }
     }
   }
 })
 
 // exported selectors
 export const selectAllWallets = (state) => state.wallets
+export const selectWalletById = (state, walletId) =>
+  state.wallets.find((wallet) => wallet.id === walletId)
 
 // exported actions
-export const { addWallet } = walletsSlice.actions
+export const { addWallet, editWallet } = walletsSlice.actions
 
 // exported reducer
 export default walletsSlice.reducer

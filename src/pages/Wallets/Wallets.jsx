@@ -1,7 +1,7 @@
 // Hooks
 import { useState } from 'react'
 // Components
-import AddWalletForm from '../../components/AddWalletForm'
+import AddWalletForm from '../../components/WalletForm'
 import Modal from '../../components/UI/Modal'
 import WalletsList from '../../components/WalletsList'
 
@@ -16,7 +16,7 @@ const Wallets = () => {
       <WalletsList OnAddWallet={handleToggleModal} />
       {showModal && (
         <Modal onClose={handleToggleModal}>
-          <AddWalletForm onClose={handleToggleModal} />
+          <AddWalletForm onClose={handleToggleModal} isNew={true} />
         </Modal>
       )}
     </>

@@ -2,32 +2,36 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 // Helpers
-import { addWallet } from '../../store/slices/walletsSlice'
+import { addWallet, editWallet } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'
 // Styles
-import classes from './AddWalletForm.module.css'
+import classes from './WalletForm.module.css'
 
-const AddWalletForm = ({ onClose }) => {
-  const [newWalletName, setNewWalletName] = useState('')
+const AddWalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
+  const [walletNewName, setWalletNewName] = useState(walletName)
   const dispatch = useDispatch()
 
-  const handleNewWalletName = (e) => {
-    setNewWalletName(e.target.value)
+  const handleWalletNewName = (e) => {
+    setWalletNewName(e.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (newWalletName && newWalletName.length >= 3 && newWalletName.length <= 25) {
-      dispatch(addWallet(newWalletName))
-      setNewWalletName('')
+    if (walletNewName && walletNewName.length >= 3 && walletNewName.length <= 25) {
+      if (isNew) {
+        dispatch(addWallet(walletNewName))
+      } else {
+        dispatch(editWallet({walletId, walletNewName}))
+      }
+      setWalletNewName('')
       onClose()
     }
   }
 
   return (
     <div className={classes['form-container']}>
-      <h4>New Wallet</h4>
+      <h4>{isNew ? 'New Wallet' : 'Edit Wallet Name'}</h4>
       <form className={classes.form} onSubmit={handleSubmit}>
         <input
           className={classes['form-control']}
@@ -39,10 +43,10 @@ const AddWalletForm = ({ onClose }) => {
           placeholder='My Awesome Wallet'
           required
           autoFocus
-          value={newWalletName}
-          onChange={handleNewWalletName}
+          value={walletNewName}
+          onChange={handleWalletNewName}
         />
-        <Button disabled={!newWalletName}>Create</Button>
+        <Button disabled={!walletNewName}>{isNew ? 'Create' : 'Save'}</Button>
       </form>
       <button onClick={onClose} className={classes.close}>
         X
