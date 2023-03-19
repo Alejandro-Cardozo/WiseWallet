@@ -9,6 +9,7 @@ import Wallets from './pages/Wallets'
 import ErrorPage from './pages/ErrorPage'
 // Components
 import Layout from './components/Layout'
+import WalletDetails from './pages/WalletDetails'
 // Styles
 import './index.css'
 
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
         element: <Wallets />
       },
       {
-        path: '/wallets',
-        element: <Wallets />
+        path: '/wallet/:id',
+        element: <WalletDetails />
       }
     ]
   }
