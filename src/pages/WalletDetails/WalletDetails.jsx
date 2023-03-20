@@ -19,7 +19,7 @@ const WalletDetails = () => {
         <WalletHeader name={currentWallet.name} id={currentWallet.id} />
         <WalletTransactions />
       </div>
-      <WalletAssets />
+      <WalletAssets walletCoins={currentWallet.coins} />
     </div>
   )
 }

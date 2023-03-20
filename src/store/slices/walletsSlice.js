@@ -13,9 +13,14 @@ const initialState = [
         amount: 0.4
       },
       {
-        id: 'eth',
+        id: 'ethereum',
         name: 'ethereum',
         amount: 0.88
+      },
+      {
+        id: 'cardano',
+        name: 'cardano',
+        amount: 1
       }
     ]
   },
@@ -30,7 +35,7 @@ const initialState = [
         amount: 0.5
       },
       {
-        id: 'eth',
+        id: 'ethereum',
         name: 'ethereum',
         amount: 0.1
       }

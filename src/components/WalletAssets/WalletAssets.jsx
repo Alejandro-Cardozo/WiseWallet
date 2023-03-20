@@ -1,12 +1,14 @@
 // Hooks
 import { useState } from 'react'
 import { useGetCoinsMarketsQuery } from '../../store/api/apiSlice'
+// Helpers
+import { getCoinBalance, getBalanceValue } from './WalletAssets.helpers'
 // Data
 import { coinsMarketsQueryParams } from '../../data/data'
 // Styles
 import classes from './WalletAssets.module.css'
 
-const WalletAssets = () => {
+const WalletAssets = ({ walletCoins }) => {
   const [pageFetched, setPageFetched] = useState(1)
   const {
     data: coinsMarket,
@@ -54,13 +56,14 @@ const WalletAssets = () => {
           {coinsMarket.map((coinMarket) => (
             <tr key={coinMarket.id}>
               <td>{coinMarket.name}</td>
-              <td>0 {coinMarket.symbol}</td>
-              <td>$0</td>
+              <td>
+                {getCoinBalance(walletCoins, coinMarket)} {coinMarket.symbol}
+              </td>
+              <td>{getBalanceValue(walletCoins, coinMarket)}</td>
               <td>${coinMarket.current_price}</td>
               <td>
-                {coinMarket.price_change_percentage_24h > 0
-                  ? `+${coinMarket.price_change_percentage_24h.toFixed(2)}`
-                  : coinMarket.price_change_percentage_24h.toFixed(2)}
+                {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
+                {coinMarket.price_change_percentage_24h.toFixed(2)}
               </td>
               <td>--/--/\--\/-</td>
             </tr>
