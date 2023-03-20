@@ -1,32 +1,28 @@
 // Hooks
 import { useState } from 'react'
 import { useGetCoinsMarketsQuery } from '../../store/api/apiSlice'
+// Data
+import { coinsMarketsQueryParams } from '../../data/data'
 // Styles
 import classes from './WalletAssets.module.css'
 
-const queryParams = {
-  vs_currency: 'usd',
-  order: 'market_cap_desc',
-  per_page: '50',
-  page: '1',
-  sparkline: true
-}
-
 const WalletAssets = () => {
   const [pageFetched, setPageFetched] = useState(1)
-  const { data, isLoading, isFetching, isSuccess, isError, error } = useGetCoinsMarketsQuery({
-    ...queryParams,
+  const {
+    data: coinsMarket,
+    isLoading,
+    isFetching,
+    isError,
+    error
+  } = useGetCoinsMarketsQuery({
+    ...coinsMarketsQueryParams,
     page: `${pageFetched}`
   })
-
-  let coinsMarket = []
 
   if (isLoading) {
     return <p>Loading...</p>
   } else if (isError) {
     return <p>Something went wrong: {error}</p>
-  } else if (isSuccess) {
-    coinsMarket = data
   }
 
   const handleNextPage = () => {
@@ -34,12 +30,15 @@ const WalletAssets = () => {
     document.getElementById('assets-table').scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
   const handlePreviousPage = () => {
-    setPageFetched((page) => page - 1)
-    document.getElementById('assets-table').scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    if (pageFetched > 1) {
+      setPageFetched((page) => page - 1)
+      document.getElementById('assets-table').scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
   }
 
   return (
     <div className={classes['assets-table']} id='assets-table'>
+      <h3>Assets</h3>
       <table>
         <thead>
           <tr>
@@ -73,7 +72,10 @@ const WalletAssets = () => {
               <button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
                 Previous
               </button>
-              <button onClick={handleNextPage} disabled={pageFetched === 100 || isFetching}>
+              <button
+                onClick={handleNextPage}
+                disabled={coinsMarket.length < coinsMarketsQueryParams.per_page || isFetching}
+              >
                 Next
               </button>
             </td>

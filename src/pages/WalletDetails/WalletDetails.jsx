@@ -14,10 +14,12 @@ const WalletDetails = () => {
   const currentWallet = useSelector((state) => selectWalletById(state, id))
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '80vh' }}>
-      <WalletHeader name={currentWallet.name} id={currentWallet.id} />
+    <div style={{ display: 'flex', gap: '4rem', height: '75vh' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 2 }}>
+        <WalletHeader name={currentWallet.name} id={currentWallet.id} />
+        <WalletTransactions />
+      </div>
       <WalletAssets />
-      <WalletTransactions />
     </div>
   )
 }
