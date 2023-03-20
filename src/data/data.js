@@ -5,3 +5,9 @@ export const coinsMarketsQueryParams = {
   page: 1,
   sparkline: true
 }
+
+export const coinsSimplePriceQueryParams = {
+  ids: '',
+  vs_currencies: 'usd',
+  precision: 2
+}

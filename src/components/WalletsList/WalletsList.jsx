@@ -18,7 +18,7 @@ const WalletsList = ({ OnAddWallet }) => {
       </div>
       <div className={classes.list}>
         {wallets.map((wallet) => (
-          <WalletCard key={wallet.id} id={wallet.id} name={wallet.name} balance={wallet.balance} classes={classes.card} />
+          <WalletCard key={wallet.id} wallet={wallet} classes={classes.card} />
         ))}
       </div>
     </section>

@@ -8,6 +8,6 @@ export const getCoinBalance = (walletCoins, coinMarket) => {
 }
 
 export const getBalanceValue = (walletCoins, coinMarket) => {
-  const balanceValue = getCoinBalance(walletCoins, coinMarket) * coinMarket.current_price;
-  return balanceValue.toFixed(2);
+  const balanceValue = getCoinBalance(walletCoins, coinMarket) * coinMarket.current_price
+  return balanceValue.toFixed(2)
 }

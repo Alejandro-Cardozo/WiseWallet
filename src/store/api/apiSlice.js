@@ -18,7 +18,7 @@ export const apiSlice = createApi({
     getCoin: builder.query({
       query: (id) => `/coins/${id}`
     }),
-    getCoinPrice: builder.query({
+    getCoinsPrice: builder.query({
       query: (args) => ({
         url: '/simple/price',
         method: 'GET',
@@ -29,4 +29,4 @@ export const apiSlice = createApi({
 })
 
 // exported custom hooks
-export const { useGetCoinsListQuery, useGetCoinsMarketsQuery, useGetCoinQuery, useGetCoinPriceQuery } = apiSlice
+export const { useGetCoinsListQuery, useGetCoinsMarketsQuery, useGetCoinQuery, useGetCoinsPriceQuery } = apiSlice

@@ -7,16 +7,25 @@ import { selectWalletById } from '../../store/slices/walletsSlice'
 import WalletHeader from '../../components/WalletHeader'
 import WalletAssets from '../../components/WalletAssets'
 import WalletTransactions from '../../components/WalletTransactions'
+import useTotalBalance from '../../hooks/useTotalBalance'
 
 const WalletDetails = () => {
   const { id } = useParams()
-
   const currentWallet = useSelector((state) => selectWalletById(state, id))
+  const { totalBalance, isSuccess, error, isError, isLoading } = useTotalBalance(currentWallet)
 
   return (
     <div style={{ display: 'flex', gap: '4rem', height: '75vh' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 2 }}>
-        <WalletHeader name={currentWallet.name} id={currentWallet.id} />
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>{error.message || 'error'}</p>}
+        {isSuccess && (
+          <WalletHeader
+            name={currentWallet.name}
+            id={currentWallet.id}
+            totalBalance={totalBalance.toFixed(2)}
+          />
+        )}
         <WalletTransactions />
       </div>
       <WalletAssets walletCoins={currentWallet.coins} />

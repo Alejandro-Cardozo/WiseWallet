@@ -7,7 +7,7 @@ import Modal from '../UI/Modal'
 // Styles
 import classes from './WalletHeader.module.css'
 
-const WalletHeader = ({ name, id }) => {
+const WalletHeader = ({ name, id, totalBalance }) => {
   const [showModal, setShowModal] = useState(false)
 
   const handleToggleModal = () => {
@@ -19,7 +19,7 @@ const WalletHeader = ({ name, id }) => {
       <article className={classes['wallet-header']}>
         <div className={classes['wallet-info']}>
           <h5>{name}</h5>
-          <h2>$10000</h2>
+          <h2>${totalBalance}</h2>
         </div>
         <div className={classes['header-buttons']}>
           <Button size='sm' onClick={handleToggleModal}>
