@@ -11,3 +11,11 @@
 .assets-table > table > thead {
   text-align: justify;
 }
+
+.assets-table > table > tbody > tr {
+  cursor: pointer;
+}
+
+.assets-table > table > tbody > tr:hover {
+  background-color: var(--color-primary-light);
+}

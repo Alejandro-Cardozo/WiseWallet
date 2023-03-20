@@ -10,6 +10,7 @@ import ErrorPage from './pages/ErrorPage'
 // Components
 import Layout from './components/Layout'
 import WalletDetails from './pages/WalletDetails'
+import CoinDetails from './pages/CoinDetails'
 // Styles
 import './index.css'
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/wallet/:id',
         element: <WalletDetails />
+      },
+      {
+        path: '/wallet/:id/coin/:coinId',
+        element: <CoinDetails />
       }
     ]
   }

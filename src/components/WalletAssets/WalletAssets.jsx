@@ -1,5 +1,6 @@
 // Hooks
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useGetCoinsMarketsQuery } from '../../store/api/apiSlice'
 // Helpers
 import { getCoinBalance, getBalanceValue } from './WalletAssets.helpers'
@@ -9,6 +10,7 @@ import { coinsMarketsQueryParams } from '../../data/data'
 import classes from './WalletAssets.module.css'
 
 const WalletAssets = ({ walletCoins }) => {
+  const navigate = useNavigate()
   const [pageFetched, setPageFetched] = useState(1)
   const {
     data: coinsMarket,
@@ -54,7 +56,7 @@ const WalletAssets = ({ walletCoins }) => {
         </thead>
         <tbody>
           {coinsMarket.map((coinMarket) => (
-            <tr key={coinMarket.id}>
+            <tr key={coinMarket.id} onClick={() => navigate(`coin/${coinMarket.id}`)}>
               <td>{coinMarket.name}</td>
               <td>
                 {getCoinBalance(walletCoins, coinMarket)} {coinMarket.symbol}

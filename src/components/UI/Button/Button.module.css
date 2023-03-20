@@ -2,22 +2,23 @@
   background-color: var(--color-secondary-dark);
   color: var(--color-light);
   border: none;
-  border-radius: 5px;
+  border-radius: 1.5rem;
   font-size: var(--font-size-sm);
-  padding: .3rem .5rem;
+  padding: .5rem .8rem;
   cursor: pointer;
+  min-width: 10rem;
 }
 
 .btn-sm {
   font-size: var(--font-size-xs);
-  border-radius: 3px;
-  padding: 0 .2rem;
+  border-radius: 1rem;
+  padding: .2rem .5rem;
 }
 
 .btn-lg {
   font-size: var(--font-size-lg);
-  border-radius: 7px;
-  padding: .5rem .8rem;
+  border-radius: 2rem;
+  padding: .8rem 1.2rem;
 }
 
 .btn:hover {

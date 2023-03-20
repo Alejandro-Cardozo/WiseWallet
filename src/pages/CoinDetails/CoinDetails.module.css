@@ -1,0 +1,11 @@
+.coin-details, .coin-details__action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.coin-details__action-buttons {
+  flex-direction: row;
+  gap: 1rem;
+}
