@@ -16,7 +16,7 @@ const Wallets = () => {
       <WalletsList OnAddWallet={handleToggleModal} />
       {showModal && (
         <Modal onClose={handleToggleModal}>
-          <AddWalletForm onClose={handleToggleModal} isNew={true} />
+          <AddWalletForm onClose={handleToggleModal} isNew />
         </Modal>
       )}
     </>

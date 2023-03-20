@@ -22,7 +22,7 @@ const AddWalletForm = ({ onClose, isNew = false, walletName = '', walletId }) =>
       if (isNew) {
         dispatch(addWallet(walletNewName))
       } else {
-        dispatch(editWallet({walletId, walletNewName}))
+        dispatch(editWallet({ walletId, walletNewName }))
       }
       setWalletNewName('')
       onClose()

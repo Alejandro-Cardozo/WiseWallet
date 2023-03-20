@@ -1,0 +1,12 @@
+.assets-table {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.assets-table > table{
+  width: 100%;
+}
+
+.assets-table > table > thead {
+  text-align: justify;
+}

@@ -9,12 +9,12 @@ import WalletAssets from '../../components/WalletAssets'
 import WalletTransactions from '../../components/WalletTransactions'
 
 const WalletDetails = () => {
-  let { id } = useParams()
+  const { id } = useParams()
 
   const currentWallet = useSelector((state) => selectWalletById(state, id))
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '80vh' }}>
       <WalletHeader name={currentWallet.name} id={currentWallet.id} />
       <WalletAssets />
       <WalletTransactions />
