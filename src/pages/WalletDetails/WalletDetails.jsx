@@ -26,7 +26,7 @@ const WalletDetails = () => {
             totalBalance={totalBalance.toFixed(2)}
           />
         )}
-        <WalletTransactions />
+        <WalletTransactions walletId={walletId} />
       </div>
       <WalletAssets walletCoins={currentWallet.coins} />
     </div>

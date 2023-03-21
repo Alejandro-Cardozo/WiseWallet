@@ -1,5 +1,6 @@
 // Hooks
 import { useSelector } from 'react-redux'
+// Selectors
 import { selectAllWallets } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'

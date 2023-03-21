@@ -1,7 +1,14 @@
+// Hooks
+import { useSelector } from 'react-redux'
+// Selectors
+import { selectWalletTransactions } from '../../store/slices/transactionsSlice'
+// Components
+import TimeAgo from '../UI/TimeAgo/TimeAgo'
 // Styles
 import classes from './WalletTransactions.module.css'
 
-const WalletTransactions = () => {
+const WalletTransactions = ({ walletId }) => {
+  const transactions = useSelector((state) => selectWalletTransactions(state, walletId))
   return (
     <div className={classes['transactions-table']}>
       <h4>Transactions</h4>
@@ -18,24 +25,19 @@ const WalletTransactions = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Buy</td>
-            <td>Today</td>
-            <td>btc</td>
-            <td>1</td>
-            <td>$400</td>
-            <td>pending</td>
-            <td>edit/delete</td>
-          </tr>
-          <tr>
-            <td>Sell</td>
-            <td>Yesterday</td>
-            <td>eth</td>
-            <td>2</td>
-            <td>$123</td>
-            <td>failed</td>
-            <td>edit/delete</td>
-          </tr>
+          {transactions.map((transaction) => (
+            <tr key={transaction.id}>
+              <td>{transaction.type}</td>
+              <td>
+                <TimeAgo timestamp={transaction.date} />
+              </td>
+              <td>{transaction.asset}</td>
+              <td>{transaction.amount}</td>
+              <td>${transaction.price}</td>
+              <td>{transaction.status}</td>
+              <td>edit/delete</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
