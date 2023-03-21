@@ -1,7 +1,7 @@
 // Hooks
 import { useState } from 'react'
 // Components
-import AddWalletForm from '../WalletForm'
+import WalletForm from '../WalletForm'
 import Button from '../UI/Button'
 import Modal from '../UI/Modal'
 // Styles
@@ -30,7 +30,7 @@ const WalletHeader = ({ name, id, totalBalance }) => {
       </article>
       {showModal && (
         <Modal onClose={handleToggleModal}>
-          <AddWalletForm onClose={handleToggleModal} walletName={name} walletId={id} />
+          <WalletForm onClose={handleToggleModal} walletName={name} walletId={id} />
         </Modal>
       )}
     </>

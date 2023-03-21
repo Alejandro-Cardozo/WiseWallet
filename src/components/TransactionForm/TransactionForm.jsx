@@ -1,14 +1,21 @@
+// Hooks
+import { useState } from 'react'
 // Components
 import Button from '../UI/Button'
 // Styles
-import classes from './WalletForm.module.css'
+import classes from './TransactionForm.module.css'
 
 const TransactionForm = ({ onClose, transactionType, coinName }) => {
-  const [amount, setAmount] = useState(walletName)
+  const [amount, setAmount] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onClose()
+  }
 
   return (
     <div className={classes['form-container']}>
-      <h4>{transactionType = 'buy' ? `Buy ${coinName}` : `Sell ${coinName}`}</h4>
+      <h4>{transactionType === 'buy' ? `Buy ${coinName}` : `Sell ${coinName}`}</h4>
       <form className={classes.form} onSubmit={handleSubmit}>
         <input
           className={classes['form-control']}
@@ -23,7 +30,16 @@ const TransactionForm = ({ onClose, transactionType, coinName }) => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <Button disabled={!amount}>{transactionType = 'buy' ? 'Buy' : 'Sell'}</Button>
+        <input
+          className={classes['form-control']}
+          type='text'
+          name='usd'
+          id='usd'
+          required
+          disabled
+          value={`$${Number(amount) * 2}`}
+        />
+        <Button disabled={!amount}>{transactionType === 'buy' ? 'Buy' : 'Sell'}</Button>
       </form>
       <button onClick={onClose} className={classes.close}>
         X
