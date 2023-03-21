@@ -10,8 +10,8 @@ import WalletTransactions from '../../components/WalletTransactions'
 import useTotalBalance from '../../hooks/useTotalBalance'
 
 const WalletDetails = () => {
-  const { id } = useParams()
-  const currentWallet = useSelector((state) => selectWalletById(state, id))
+  const { walletId } = useParams()
+  const currentWallet = useSelector((state) => selectWalletById(state, walletId))
   const { totalBalance, isSuccess, error, isError, isLoading } = useTotalBalance(currentWallet)
 
   return (

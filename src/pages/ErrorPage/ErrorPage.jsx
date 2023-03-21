@@ -6,7 +6,6 @@ import Button from '../../components/UI/Button'
 export default function ErrorPage () {
   const navigate = useNavigate()
   const error = useRouteError()
-  console.error(error)
 
   return (
     <div

@@ -25,11 +25,11 @@ const router = createBrowserRouter([
         element: <Wallets />
       },
       {
-        path: '/wallet/:id',
+        path: '/wallet/:walletId',
         element: <WalletDetails />
       },
       {
-        path: '/wallet/:id/coin/:coinId',
+        path: '/wallet/:walletId/coin/:coinId',
         element: <CoinDetails />
       }
     ]

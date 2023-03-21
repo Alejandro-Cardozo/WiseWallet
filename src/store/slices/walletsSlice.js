@@ -48,10 +48,10 @@ const walletsSlice = createSlice({
   initialState,
   reducers: {
     addWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         state.push(action.payload)
       },
-      prepare (name) {
+      prepare(name) {
         return {
           payload: {
             id: nanoid(),
@@ -63,7 +63,7 @@ const walletsSlice = createSlice({
       }
     },
     editWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         const { walletId, walletNewName } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
