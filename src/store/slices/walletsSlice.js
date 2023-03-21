@@ -38,7 +38,12 @@ const initialState = [
         id: 'ethereum',
         name: 'ethereum',
         amount: 0.1
-      }
+      },
+      {
+        id: 'ripple',
+        name: 'XRP',
+        amount: 0
+      },
     ]
   }
 ]

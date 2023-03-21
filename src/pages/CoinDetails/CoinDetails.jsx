@@ -38,7 +38,7 @@ const CoinDetails = () => {
       </div>
       <div className={classes['coin-details__action-buttons']}>
         <Button size='lg'>BUY</Button>
-        <Button size='lg'>SELL</Button>
+        {coinInWallet?.amount && <Button size='lg'>SELL</Button>}
       </div>
     </div>
   )

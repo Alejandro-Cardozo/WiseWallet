@@ -8,7 +8,7 @@ import Button from '../UI/Button'
 // Styles
 import classes from './WalletForm.module.css'
 
-const AddWalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
+const WalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
   const [walletNewName, setWalletNewName] = useState(walletName)
   const dispatch = useDispatch()
 
@@ -55,4 +55,4 @@ const AddWalletForm = ({ onClose, isNew = false, walletName = '', walletId }) =>
   )
 }
 
-export default AddWalletForm
+export default WalletForm
