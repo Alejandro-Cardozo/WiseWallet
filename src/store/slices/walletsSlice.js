@@ -78,6 +78,12 @@ const walletsSlice = createSlice({
         }
       }
     },
+    deleteWallet: {
+      reducer (state, action) {
+        const walletIndex = state.findIndex((wallet) => wallet.id === action.payload)
+        state.splice(walletIndex, 1)
+      }
+    },
     addAmount: {
       reducer (state, action) {
         const { walletId, coinId, coinName, totalAmount } = action.payload
@@ -111,7 +117,8 @@ export const selectWalletById = (state, walletId) =>
   state.wallets.find((wallet) => wallet.id === walletId)
 
 // exported actions
-export const { addWallet, editWallet, addAmount, subtractAmount } = walletsSlice.actions
+export const { addWallet, editWallet, deleteWallet, addAmount, subtractAmount } =
+  walletsSlice.actions
 
 // exported reducer
 export default walletsSlice.reducer

@@ -40,6 +40,8 @@ const WalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
           id='name'
           minLength={3}
           maxLength={25}
+          pattern='\w{3,25}'
+          title='Alphabet characters, numbers and underscores'
           placeholder='My Awesome Wallet'
           required
           autoFocus
