@@ -1,7 +1,10 @@
+// Styles
+import classes from './WalletTransactions.module.css'
+
 const WalletTransactions = () => {
   return (
-    <div>
-      <h2>Transactions</h2>
+    <div className={classes['transactions-table']}>
+      <h4>Transactions</h4>
       <table>
         <thead>
           <tr>
@@ -9,8 +12,9 @@ const WalletTransactions = () => {
             <th>Date</th>
             <th>Asset</th>
             <th>Amount</th>
-            <th>Address</th>
+            <th>Price</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -19,16 +23,18 @@ const WalletTransactions = () => {
             <td>Today</td>
             <td>btc</td>
             <td>1</td>
-            <td>215jl9djslu93aad</td>
+            <td>$400</td>
             <td>pending</td>
+            <td>edit/delete</td>
           </tr>
           <tr>
             <td>Sell</td>
-            <td>Tomorrow</td>
+            <td>Yesterday</td>
             <td>eth</td>
             <td>2</td>
-            <td>asdf923h0jk4ks09</td>
+            <td>$123</td>
             <td>failed</td>
+            <td>edit/delete</td>
           </tr>
         </tbody>
       </table>

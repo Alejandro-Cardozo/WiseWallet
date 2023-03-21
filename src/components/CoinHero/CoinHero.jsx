@@ -25,7 +25,7 @@ const CoinHero = ({ walletId, coinInWallet, coinData }) => {
       </div>
       <div className='coin-details__balance'>
         <p>
-          {coinInWallet ? coinInWallet.amount : 0} {symbol}
+          {coinInWallet ? coinInWallet.amount.toFixed(2) : 0} {symbol}
         </p>
         <p>${coinInWallet ? (coinInWallet.amount * marketData.current_price.usd).toFixed(2) : 0}</p>
       </div>

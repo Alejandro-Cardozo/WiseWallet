@@ -1,0 +1,13 @@
+.transactions-table {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 3;
+}
+
+.transactions-table > table{
+  width: 100%;
+}
+
+.transactions-table > table > thead {
+  text-align: justify;
+}

@@ -62,7 +62,7 @@ const WalletAssets = ({ walletCoins }) => {
                 {getCoinBalance(walletCoins, coinMarket)} {coinMarket.symbol}
               </td>
               <td>{getBalanceValue(walletCoins, coinMarket)}</td>
-              <td>${coinMarket.current_price}</td>
+              <td>${coinMarket.current_price.toFixed(2)}</td>
               <td>
                 {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
                 {coinMarket.price_change_percentage_24h.toFixed(2)}
