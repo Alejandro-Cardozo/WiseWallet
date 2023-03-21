@@ -33,7 +33,7 @@ const CoinHero = ({ walletId, coinInWallet, coinData }) => {
         <Button size='lg' onClick={handleToggleModal.bind(null, 'buy')}>
           BUY
         </Button>
-        {coinInWallet?.amount && (
+        {coinInWallet?.amount > 0 && (
           <Button size='lg' onClick={handleToggleModal.bind(null, 'sell')}>
             SELL
           </Button>
@@ -49,7 +49,7 @@ const CoinHero = ({ walletId, coinInWallet, coinData }) => {
             coinName={name}
             coinPrice={marketData.current_price.usd}
             coinSymbol={symbol}
-            coinAmount = {coinInWallet?.amount || 0}
+            coinAmount={coinInWallet?.amount || 0}
           />
         </Modal>
       )}

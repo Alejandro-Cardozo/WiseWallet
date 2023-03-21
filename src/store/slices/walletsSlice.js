@@ -53,10 +53,10 @@ const walletsSlice = createSlice({
   initialState,
   reducers: {
     addWallet: {
-      reducer(state, action) {
+      reducer (state, action) {
         state.push(action.payload)
       },
-      prepare(name) {
+      prepare (name) {
         return {
           payload: {
             id: nanoid(),
@@ -68,7 +68,7 @@ const walletsSlice = createSlice({
       }
     },
     editWallet: {
-      reducer(state, action) {
+      reducer (state, action) {
         const { walletId, walletNewName } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
@@ -79,17 +79,26 @@ const walletsSlice = createSlice({
       }
     },
     addAmount: {
-      reducer(state, action) {
-        console.log(action.payload)
+      reducer (state, action) {
         const { walletId, coinId, coinName, totalAmount } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
           const existingCoinIndex = existingWallet.coins.findIndex((coin) => coin.id === coinId)
           if (existingCoinIndex === -1) {
-            existingWallet.coins.push({ id: coinId, name: coinName, totalAmount })
+            existingWallet.coins.push({ id: coinId, name: coinName, amount: totalAmount })
           } else {
             existingWallet.coins[existingCoinIndex].amount += totalAmount
           }
+        }
+      }
+    },
+    subtractAmount: {
+      reducer (state, action) {
+        const { walletId, coinId, totalAmount } = action.payload
+        const existingWallet = state.find((wallet) => wallet.id === walletId)
+        if (existingWallet) {
+          const existingCoinIndex = existingWallet.coins.findIndex((coin) => coin.id === coinId)
+          existingWallet.coins[existingCoinIndex].amount -= totalAmount
         }
       }
     }
@@ -102,7 +111,7 @@ export const selectWalletById = (state, walletId) =>
   state.wallets.find((wallet) => wallet.id === walletId)
 
 // exported actions
-export const { addWallet, editWallet, addAmount } = walletsSlice.actions
+export const { addWallet, editWallet, addAmount, subtractAmount } = walletsSlice.actions
 
 // exported reducer
 export default walletsSlice.reducer

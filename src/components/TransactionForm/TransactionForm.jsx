@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 // Actions
-import { addAmount } from '../../store/slices/walletsSlice'
+import { addAmount, subtractAmount } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'
 // Styles
@@ -27,7 +27,7 @@ const TransactionForm = ({
     if (transactionType === 'buy') {
       dispatch(addAmount({ walletId, coinId, coinName, totalAmount }))
     } else if (transactionType === 'sell') {
-      console.log(totalAmount)
+      dispatch(subtractAmount({ walletId, coinId, totalAmount }))
     }
     onClose()
   }
@@ -36,7 +36,7 @@ const TransactionForm = ({
     <div className={classes['form-container']}>
       <h4>{transactionType === 'buy' ? `Buy ${coinName}` : `Sell ${coinName}`}</h4>
       <form className={classes.form} onSubmit={handleSubmit}>
-        <label className={classes['label']}>
+        <label className={classes.label}>
           <input
             className={classes['form-control']}
             type='number'
@@ -52,7 +52,7 @@ const TransactionForm = ({
           />
           <span>{coinSymbol}</span>
         </label>
-        <label className={classes['label']}>
+        <label className={classes.label}>
           <input
             className={classes['form-control']}
             type='text'

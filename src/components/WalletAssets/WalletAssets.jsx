@@ -26,7 +26,7 @@ const WalletAssets = ({ walletCoins }) => {
   if (isLoading) {
     return <p>Loading...</p>
   } else if (isError) {
-    return <p>Something went wrong: {error}</p>
+    return <p>Something went wrong: {error.message || 'error'}</p>
   }
 
   const handleNextPage = () => {

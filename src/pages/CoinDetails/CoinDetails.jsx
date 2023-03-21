@@ -9,7 +9,7 @@ import CoinHero from '../../components/CoinHero/CoinHero'
 
 const CoinDetails = () => {
   const { walletId, coinId } = useParams()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const wallet = useSelector((state) => selectWalletById(state, walletId))
   const coinInWallet = wallet.coins.find((el) => el.id === coinId)
@@ -17,7 +17,7 @@ const CoinDetails = () => {
 
   if (isLoading) return <p>Loading...</p>
   if (isError) {
-    throw new Error(error.message)
+    return <p>Something went wrong: {error.message || 'error'}</p>
   }
 
   return (
