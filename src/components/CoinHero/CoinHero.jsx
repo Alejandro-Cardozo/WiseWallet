@@ -7,8 +7,8 @@ import Modal from '../UI/Modal'
 // Styles
 import classes from './CoinHero.module.css'
 
-const CoinHero = ({ coinInWallet, coinData }) => {
-  const { name, image, market_data: marketData, symbol } = coinData
+const CoinHero = ({ walletId, coinInWallet, coinData }) => {
+  const { id: coinId, name, image, market_data: marketData, symbol } = coinData
   const [showModal, setShowModal] = useState(false)
   const [transactionType, setTransactionType] = useState('')
 
@@ -44,7 +44,12 @@ const CoinHero = ({ coinInWallet, coinData }) => {
           <TransactionForm
             onClose={handleToggleModal}
             transactionType={transactionType}
+            walletId={walletId}
+            coinId={coinId}
             coinName={name}
+            coinPrice={marketData.current_price.usd}
+            coinSymbol={symbol}
+            coinAmount = {coinInWallet?.amount || 0}
           />
         </Modal>
       )}

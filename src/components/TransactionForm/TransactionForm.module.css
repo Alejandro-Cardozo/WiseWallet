@@ -16,8 +16,6 @@
 }
 
 .form-control {
-  display: block;
-  width: 100%;
   padding: 0.3rem 0.8rem;
   color: var(--color-primary-light);
   background-color: #fff;
@@ -30,6 +28,16 @@
   border-color: var(--color-primary);
   outline: 0;
   box-shadow: 0 0 0 .2rem var(--color-primary-light);
+}
+
+.label {
+  position: relative;
+}
+
+.label span {
+  position: absolute;
+  top: .4rem;
+  right: 2.5rem;
 }
 
 .close {

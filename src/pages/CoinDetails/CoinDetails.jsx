@@ -1,5 +1,5 @@
 // Hooks
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useGetCoinQuery } from '../../store/api/apiSlice'
 // Helpers
@@ -9,6 +9,7 @@ import CoinHero from '../../components/CoinHero/CoinHero'
 
 const CoinDetails = () => {
   const { walletId, coinId } = useParams()
+  const navigate = useNavigate();
 
   const wallet = useSelector((state) => selectWalletById(state, walletId))
   const coinInWallet = wallet.coins.find((el) => el.id === coinId)
@@ -21,7 +22,8 @@ const CoinDetails = () => {
 
   return (
     <>
-      <CoinHero coinInWallet={coinInWallet} coinData={data} />
+      <button onClick={() => navigate(-1)}>&larr; Go back to {wallet.name}</button>
+      <CoinHero walletId={walletId} coinInWallet={coinInWallet} coinData={data} />
     </>
   )
 }

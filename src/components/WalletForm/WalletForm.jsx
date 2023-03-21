@@ -1,7 +1,7 @@
 // Hooks
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// Helpers
+// Actions
 import { addWallet, editWallet } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'

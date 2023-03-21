@@ -53,10 +53,10 @@ const walletsSlice = createSlice({
   initialState,
   reducers: {
     addWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         state.push(action.payload)
       },
-      prepare (name) {
+      prepare(name) {
         return {
           payload: {
             id: nanoid(),
@@ -68,7 +68,7 @@ const walletsSlice = createSlice({
       }
     },
     editWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         const { walletId, walletNewName } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
@@ -78,15 +78,18 @@ const walletsSlice = createSlice({
         }
       }
     },
-    addAmount: (state, action) => {
-      const { walletId, coinId, coinName, amount } = action.payload
-      const existingWallet = state.find((wallet) => wallet.id === walletId)
-      if (existingWallet) {
-        const existingCoin = existingWallet.coins.find((coin) => coin.id === coinId)
-        if (existingCoin) {
-          existingWallet.coins[existingCoin].amount += amount
-        } else {
-          existingWallet.coins[existingCoin] = { id: coinId, name: coinName, amount }
+    addAmount: {
+      reducer(state, action) {
+        console.log(action.payload)
+        const { walletId, coinId, coinName, totalAmount } = action.payload
+        const existingWallet = state.find((wallet) => wallet.id === walletId)
+        if (existingWallet) {
+          const existingCoinIndex = existingWallet.coins.findIndex((coin) => coin.id === coinId)
+          if (existingCoinIndex === -1) {
+            existingWallet.coins.push({ id: coinId, name: coinName, totalAmount })
+          } else {
+            existingWallet.coins[existingCoinIndex].amount += totalAmount
+          }
         }
       }
     }
