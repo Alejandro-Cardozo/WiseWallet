@@ -5,6 +5,7 @@ const initialState = [
   {
     id: 'transaction-1',
     walletId: 'wallet-2',
+    coinId: 'ethereum',
     type: 'Buy',
     date: new Date().toISOString(),
     asset: 'eth',
@@ -15,6 +16,7 @@ const initialState = [
   {
     id: 'transaction-2',
     walletId: 'wallet-1',
+    coinId: 'polkadot',
     type: 'Sell',
     date: new Date().toISOString(),
     asset: 'dot',
@@ -25,6 +27,7 @@ const initialState = [
   {
     id: 'transaction-3',
     walletId: 'wallet-1',
+    coinId: 'usd-coin',
     type: 'Buy',
     date: new Date().toISOString(),
     asset: 'usdc',
@@ -40,12 +43,14 @@ const transactionsSlice = createSlice({
   reducers: {
     addTransaction: {
       reducer (state, action) {
-        state.push(action.payload)
+        state.unshift(action.payload)
       },
-      prepare (type, asset, amount, price) {
+      prepare ({ type, walletId, coinId, asset, amount, price }) {
         return {
           payload: {
-            id: nanoid,
+            id: nanoid(),
+            walletId,
+            coinId,
             type,
             date: new Date().toISOString(),
             asset,

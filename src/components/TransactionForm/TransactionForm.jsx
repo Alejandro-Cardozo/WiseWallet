@@ -1,8 +1,9 @@
 // Hooks
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 // Actions
-import { addAmount, subtractAmount } from '../../store/slices/walletsSlice'
+import { addTransaction } from '../../store/slices/transactionsSlice'
 // Components
 import Button from '../UI/Button'
 // Styles
@@ -10,31 +11,39 @@ import classes from './TransactionForm.module.css'
 
 const TransactionForm = ({
   onClose,
-  transactionType,
+  transactionType: type,
   walletId,
   coinId,
   coinName,
   coinPrice,
-  coinSymbol,
+  coinSymbol: asset,
   coinAmount = 0
 }) => {
   const [amount, setAmount] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const totalAmount = Number(amount)
-    if (transactionType === 'buy') {
-      dispatch(addAmount({ walletId, coinId, coinName, totalAmount }))
-    } else if (transactionType === 'sell') {
-      dispatch(subtractAmount({ walletId, coinId, totalAmount }))
-    }
+    const totalPrice = (coinPrice * totalAmount).toFixed(2)
+    dispatch(
+      addTransaction({
+        type,
+        walletId,
+        coinId,
+        asset,
+        amount: totalAmount,
+        price: totalPrice
+      })
+    )
     onClose()
+    navigate(`/wallet/${walletId}`)
   }
 
   return (
     <div className={classes['form-container']}>
-      <h4>{transactionType === 'buy' ? `Buy ${coinName}` : `Sell ${coinName}`}</h4>
+      <h4>{type === 'buy' ? `Buy ${coinName}` : `Sell ${coinName}`}</h4>
       <form className={classes.form} onSubmit={handleSubmit}>
         <label className={classes.label}>
           <input
@@ -44,13 +53,13 @@ const TransactionForm = ({
             id='amount'
             min={0.1}
             step={0.1}
-            max={transactionType === 'buy' ? 100 : coinAmount}
+            max={type === 'buy' ? 100 : coinAmount}
             required
             autoFocus
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <span>{coinSymbol}</span>
+          <span>{asset}</span>
         </label>
         <label className={classes.label}>
           <input
@@ -65,7 +74,7 @@ const TransactionForm = ({
           <span>usd</span>
         </label>
 
-        <Button disabled={!amount}>{transactionType === 'buy' ? 'Buy' : 'Sell'}</Button>
+        <Button disabled={!amount}>{type === 'buy' ? 'Buy' : 'Sell'}</Button>
       </form>
       <button onClick={onClose} className={classes.close}>
         X
