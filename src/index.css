@@ -2,16 +2,15 @@
 
 :root {
   /* COLOR VARIABLES */
-  --color-primary: #6383ea;
-  --color-primary-light: #a5b7f3;
-  --color-primary-dark: #183db4;
+  --color-primary: #191645;
+  --color-primary-light: #38319b;
+  --color-primary-dark: #070613;
 
-  --color-secondary: #6545a4;
-  --color-secondary-light: #8b6fc3;
-  --color-secondary-dark: #422d6c;
+  --color-secondary: #43c6ac;
+  --color-secondary-light: #8adbcb;
+  --color-secondary-dark: #247565;
 
-  --color-light: #f6f8fe;
-  --color-dark: #060f2d;
+  --color-light: #fff;
 
   /* FONT VARIABLES */
   --font-primary: 'Red Hat Display', sans-serif;

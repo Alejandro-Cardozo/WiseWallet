@@ -1,5 +1,5 @@
 .header {
-  height: 10rem;
+  height: 8rem;
   background-color: var(--color-primary-dark);
   color: var(--color-light);
   font-size: var(--font-size-xl);
@@ -7,4 +7,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo h1 {
+  font-size: 3rem;
+}
+
+.logo img {
+  width: 4rem;
+  height: 4rem;
 }

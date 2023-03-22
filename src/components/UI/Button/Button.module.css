@@ -1,5 +1,5 @@
 .btn {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-secondary);
   color: var(--color-light);
   border: none;
   border-radius: 1.5rem;
@@ -23,7 +23,7 @@
 }
 
 .btn:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
 }
 
 .btn:disabled {

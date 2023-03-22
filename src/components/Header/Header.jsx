@@ -6,7 +6,12 @@ import classes from './Header.module.css'
 const Header = () => {
   return (
     <header className={classes.header}>
-      <h1><Link to='/'>LOGO</Link></h1>
+      <Link to='/'>
+        <div className={classes.logo}>
+          <img src='/favicon.svg' alt='wisewalletlogo' />
+          <h1>WiseWallet</h1>
+        </div>
+      </Link>
       <nav>
         <ul>
           <li>

@@ -4,7 +4,12 @@ import classes from './Footer.module.css'
 const Footer = () => {
   return (
     <footer className={classes.footer}>
-      <p>Built and Designed by Alejandro Cardozo</p>
+      <p>
+        Built and Designed by{' '}
+        <a href='https://github.com/Alejandro-Cardozo' target='_blank' rel='noopener noreferrer'>
+          <span>Alejandro Cardozo</span>
+        </a>
+      </p>
     </footer>
   )
 }
