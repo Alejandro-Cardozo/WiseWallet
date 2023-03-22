@@ -1,0 +1,22 @@
+.coins-stack {
+  display: flex;
+  align-items: center;
+}
+
+.coins-stack__images {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.coins-stack__images-img {
+  box-sizing: content-box;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background-color: #fff;
+}
+
+.coins-stack__images-img:not(:first-child) {
+  margin-right: -2rem;
+}
