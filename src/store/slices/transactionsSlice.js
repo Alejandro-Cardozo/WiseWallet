@@ -13,7 +13,7 @@ const initialState = [
     status: 'pending'
   },
   {
-    id: 'transaction-1',
+    id: 'transaction-2',
     walletId: 'wallet-1',
     type: 'Sell',
     date: new Date().toISOString(),
@@ -23,7 +23,7 @@ const initialState = [
     status: 'succeeded'
   },
   {
-    id: 'transaction-1',
+    id: 'transaction-3',
     walletId: 'wallet-1',
     type: 'Buy',
     date: new Date().toISOString(),
@@ -55,6 +55,12 @@ const transactionsSlice = createSlice({
           }
         }
       }
+    },
+    removeTransaction: {
+      reducer (state, action) {
+        const transactionIndex = state.findIndex((transaction) => transaction.id === action.payload)
+        state.splice(transactionIndex, 1)
+      }
     }
   }
 })
@@ -64,7 +70,7 @@ export const selectWalletTransactions = (state, walletId) =>
   state.transactions.filter((transaction) => transaction.walletId === walletId)
 
 // exported actions
-export const { addTransaction } = transactionsSlice.actions
+export const { addTransaction, removeTransaction } = transactionsSlice.actions
 
 // exported reducer
 export default transactionsSlice.reducer

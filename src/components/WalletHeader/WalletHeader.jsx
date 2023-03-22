@@ -8,6 +8,7 @@ import { deleteWallet } from '../../store/slices/walletsSlice'
 import WalletForm from '../WalletForm'
 import Button from '../UI/Button'
 import Modal from '../UI/Modal'
+import ConfirmationPopup from '../UI/ConfirmationPopup'
 // Styles
 import classes from './WalletHeader.module.css'
 
@@ -27,17 +28,6 @@ const WalletHeader = ({ name, id, totalBalance }) => {
     dispatcher(deleteWallet(id))
     navigate('/')
   }
-
-  const deleteConfirmation = (
-    <div style={{ textAlign: 'center' }}>
-      <h3>Are you sure you want to delete this wallet?</h3>
-      <p style={{ margin: '2rem' }}>This action is irreversible!</p>
-      <div style={{ display: 'flex', gap: '1rem', margin: '0 auto', width: 'max-content' }}>
-        <Button onClick={handleDeleteWallet}>Do it</Button>
-        <Button onClick={handleToggleModal}>Cancel</Button>
-      </div>
-    </div>
-  )
 
   return (
     <>
@@ -60,7 +50,14 @@ const WalletHeader = ({ name, id, totalBalance }) => {
           {modalAction === 'edit' && (
             <WalletForm onClose={handleToggleModal} walletName={name} walletId={id} />
           )}
-          {modalAction === 'delete' && deleteConfirmation}
+          {modalAction === 'delete' && (
+            <ConfirmationPopup
+              title='Are you sure you want to delete this wallet?'
+              body='This action is irreversible!'
+              onConfirm={handleDeleteWallet}
+              onCancel={handleToggleModal}
+            />
+          )}
         </Modal>
       )}
     </>
