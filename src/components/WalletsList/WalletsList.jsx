@@ -1,7 +1,8 @@
 // Hooks
 import { useSelector } from 'react-redux'
+import useCoinsData from '../../hooks/useCoinsData'
 // Selectors
-import { selectAllWallets } from '../../store/slices/walletsSlice'
+import { selectAllWallets, selectAllCoinsInWallets } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'
 import WalletCard from './WalletCard'
@@ -10,6 +11,9 @@ import classes from './WalletsList.module.css'
 
 const WalletsList = ({ OnAddWallet }) => {
   const wallets = useSelector(selectAllWallets)
+  const coinsInWallets = useSelector(selectAllCoinsInWallets)
+
+  const { data, isSuccess, error, isError, isLoading } = useCoinsData(coinsInWallets.join(','))
 
   return (
     <section>
@@ -18,9 +22,12 @@ const WalletsList = ({ OnAddWallet }) => {
         <Button onClick={OnAddWallet}>+ Add Wallet</Button>
       </div>
       <div className={classes.list}>
-        {wallets.map((wallet) => (
-          <WalletCard key={wallet.id} wallet={wallet} classes={classes.card} />
-        ))}
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>{error.message || 'error'}</p>}
+        {isSuccess &&
+          wallets.map((wallet) => (
+            <WalletCard key={wallet.id} coinsData={data} wallet={wallet} classes={classes.card} />
+          ))}
       </div>
     </section>
   )

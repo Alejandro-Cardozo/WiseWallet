@@ -10,7 +10,7 @@ const TimeAgo = ({ timestamp }) => {
     timeAgo = `${timePeriod} ago`
   }
   return (
-    <span title={date} style={{ cursor: 'help' }}>
+    <span title={date} style={{ cursor: 'default' }}>
       &nbsp; <i>{timeAgo}</i>
     </span>
   )

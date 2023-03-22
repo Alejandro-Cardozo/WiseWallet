@@ -1,18 +1,33 @@
 // Hooks
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-// Helpers
-import { selectWalletById } from '../../store/slices/walletsSlice'
+import useCoinsData from '../../hooks/useCoinsData'
+// Selectors
+import { selectAllCoinsInWallets, selectWalletById } from '../../store/slices/walletsSlice'
 // Components
 import WalletHeader from '../../components/WalletHeader'
 import WalletAssets from '../../components/WalletAssets'
 import WalletTransactions from '../../components/WalletTransactions'
-import useTotalBalance from '../../hooks/useTotalBalance'
 
 const WalletDetails = () => {
   const { walletId } = useParams()
   const currentWallet = useSelector((state) => selectWalletById(state, walletId))
-  const { totalBalance, isSuccess, error, isError, isLoading } = useTotalBalance(currentWallet)
+  const coinsInWallets = useSelector(selectAllCoinsInWallets)
+
+  const { data, isSuccess, error, isError, isLoading } = useCoinsData(coinsInWallets.join(','))
+
+  let coinsInWallet
+  let totalBalance
+
+  if (isSuccess) {
+    coinsInWallet = data.filter((coin) => currentWallet.coins.some((el) => el.id === coin.id))
+
+    totalBalance = coinsInWallet.reduce(
+      (acc, el) =>
+        acc + el.current_price * currentWallet.coins.find((coin) => coin.id === el.id).amount,
+      0
+    )
+  }
 
   return (
     <div style={{ display: 'flex', gap: '4rem', height: '75vh' }}>

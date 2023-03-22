@@ -5,21 +5,17 @@ const initialState = [
   {
     id: 'wallet-1',
     name: 'Main Wallet',
-    balance: 0,
     coins: [
       {
         id: 'bitcoin',
-        name: 'bitcoin',
         amount: 0.4
       },
       {
         id: 'ethereum',
-        name: 'ethereum',
         amount: 0.88
       },
       {
         id: 'cardano',
-        name: 'cardano',
         amount: 1
       }
     ]
@@ -27,22 +23,61 @@ const initialState = [
   {
     id: 'wallet-2',
     name: 'Secondary Wallet',
-    balance: 0,
     coins: [
       {
         id: 'bitcoin',
-        name: 'bitcoin',
         amount: 0.5
       },
       {
         id: 'ethereum',
-        name: 'ethereum',
         amount: 0.1
       },
       {
         id: 'ripple',
-        name: 'XRP',
-        amount: 0
+        amount: 4
+      }
+    ]
+  },
+  {
+    id: 'wallet-3',
+    name: 'Secondary Wallet',
+    coins: [
+      {
+        id: 'doge-coin',
+        amount: 6.5
+      },
+      {
+        id: 'polskadot',
+        amount: 1.1
+      },
+      {
+        id: 'ripple',
+        amount: 1
+      }
+    ]
+  },
+  {
+    id: 'wallet-4',
+    name: 'Secondary Wallet',
+    balance: 0,
+    coins: [
+      {
+        id: 'tether',
+        amount: 10.1
+      },
+      {
+        id: 'tron',
+        amount: 8
+      }
+    ]
+  },
+  {
+    id: 'wallet-5',
+    name: 'Secondary Wallet',
+    coins: [
+      {
+        id: 'usd-coin',
+        amount: 0.8
       }
     ]
   }
@@ -61,7 +96,6 @@ const walletsSlice = createSlice({
           payload: {
             id: nanoid(),
             name,
-            balance: 0,
             coins: []
           }
         }
@@ -113,6 +147,10 @@ const walletsSlice = createSlice({
 
 // exported selectors
 export const selectAllWallets = (state) => state.wallets
+export const selectAllCoinsInWallets = (state) => {
+  const allCoins = state.wallets.map(wallet => wallet.coins.map(coin => coin.id)).flat(1)
+  return [...new Set(allCoins)]
+}
 export const selectWalletById = (state, walletId) =>
   state.wallets.find((wallet) => wallet.id === walletId)
 export const selectWalletCoinField = (state, walletId, coinId, field) => {
