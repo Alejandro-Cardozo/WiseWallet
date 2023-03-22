@@ -53,10 +53,10 @@ const WalletHeader = ({ name, id, totalBalance }) => {
           {modalAction === 'delete' && (
             <ConfirmationPopup
               title='Are you sure you want to delete this wallet?'
-              body='This action is irreversible!'
               onConfirm={handleDeleteWallet}
               onCancel={handleToggleModal}
-            />
+            ><p>This action is irreversible!</p>
+            </ConfirmationPopup>
           )}
         </Modal>
       )}

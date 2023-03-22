@@ -2,10 +2,15 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 // Selectors and Actions
-import { selectWalletTransactions, removeTransaction } from '../../store/slices/transactionsSlice'
+import {
+  selectWalletTransactions,
+  removeTransaction,
+  editTransaction
+} from '../../store/slices/transactionsSlice'
 // Components
 import TimeAgo from '../UI/TimeAgo'
 import ConfirmationPopup from '../UI/ConfirmationPopup'
+import EditTransactionForm from '../EditTransactionForm'
 import Modal from '../UI/Modal'
 // Styles
 import classes from './WalletTransactions.module.css'
@@ -15,19 +20,29 @@ const WalletTransactions = ({ walletId }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [modalAction, setModalAction] = useState('')
-  const [selectedTransactionId, setSelectedTransactionId] = useState(null)
+  const [selectedTransaction, setSelectedTransaction] = useState(null)
 
   const dispatcher = useDispatch()
 
-  const handleToggleModal = (action = '', transactionId = null) => {
+  const handleToggleModal = (action = '', transaction = null) => {
     setModalAction(action)
-    setSelectedTransactionId(transactionId)
+    setSelectedTransaction(transaction)
     setShowModal((prevState) => !prevState)
   }
 
   const handleDeleteTransaction = () => {
-    dispatcher(removeTransaction(selectedTransactionId))
+    dispatcher(removeTransaction(selectedTransaction.id))
     handleToggleModal()
+  }
+
+  const handleEditTransaction = (amount, price) => {
+    const editedTransaction = {
+      id: selectedTransaction.id,
+      amount,
+      price
+    }
+    dispatcher(editTransaction(editedTransaction))
+    setShowModal((prevState) => !prevState)
   }
   return (
     <div className={classes['transactions-table']}>
@@ -56,8 +71,8 @@ const WalletTransactions = ({ walletId }) => {
               <td>${transaction.price}</td>
               <td>{transaction.status}</td>
               <td>
-                <button onClick={handleToggleModal.bind(null, 'edit')}>edt</button>
-                <button onClick={handleToggleModal.bind(null, 'delete', transaction.id)}>dlt</button>
+                <button onClick={handleToggleModal.bind(null, 'edit', transaction)}>edt</button>
+                <button onClick={handleToggleModal.bind(null, 'delete', transaction)}>dlt</button>
               </td>
             </tr>
           ))}
@@ -65,14 +80,22 @@ const WalletTransactions = ({ walletId }) => {
       </table>
       {showModal && (
         <Modal onClose={handleToggleModal}>
-          {modalAction === 'edit' && <p>Hello there</p>}
+          {modalAction === 'edit' && (
+            <EditTransactionForm
+              handleEditTransaction={handleEditTransaction}
+              handleToggleModal={handleToggleModal}
+              walletId={walletId}
+              transaction={selectedTransaction}
+            />
+          )}
           {modalAction === 'delete' && (
             <ConfirmationPopup
               title='are u sure?'
-              body='sure dude?'
               onConfirm={handleDeleteTransaction}
               onCancel={handleToggleModal}
-            />
+            >
+              <p>u sure, dude?</p>
+            </ConfirmationPopup>
           )}
         </Modal>
       )}

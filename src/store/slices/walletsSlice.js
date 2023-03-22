@@ -115,6 +115,15 @@ const walletsSlice = createSlice({
 export const selectAllWallets = (state) => state.wallets
 export const selectWalletById = (state, walletId) =>
   state.wallets.find((wallet) => wallet.id === walletId)
+export const selectWalletCoinField = (state, walletId, coinId, field) => {
+  const wallet = state.wallets.find((wallet) => wallet.id === walletId)
+  if (wallet) {
+    const coinObject = wallet.coins.find((coin) => coin.id === coinId)
+    if (coinObject) {
+      return coinObject[field]
+    }
+  }
+}
 
 // exported actions
 export const { addWallet, editWallet, deleteWallet, addAmount, subtractAmount } =

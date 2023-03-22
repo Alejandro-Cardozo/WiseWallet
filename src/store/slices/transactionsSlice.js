@@ -66,6 +66,13 @@ const transactionsSlice = createSlice({
         const transactionIndex = state.findIndex((transaction) => transaction.id === action.payload)
         state.splice(transactionIndex, 1)
       }
+    },
+    editTransaction: {
+      reducer (state, action) {
+        const { id } = action.payload
+        const transactionIndex = state.findIndex((transaction) => transaction.id === id)
+        state[transactionIndex] = { ...state[transactionIndex], ...action.payload }
+      }
     }
   }
 })
@@ -75,7 +82,7 @@ export const selectWalletTransactions = (state, walletId) =>
   state.transactions.filter((transaction) => transaction.walletId === walletId)
 
 // exported actions
-export const { addTransaction, removeTransaction } = transactionsSlice.actions
+export const { addTransaction, removeTransaction, editTransaction } = transactionsSlice.actions
 
 // exported reducer
 export default transactionsSlice.reducer

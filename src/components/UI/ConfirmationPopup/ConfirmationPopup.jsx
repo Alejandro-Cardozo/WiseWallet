@@ -1,13 +1,14 @@
+// Components
 import Button from '../Button'
 
-const ConfirmationPopup = ({ title, body, onConfirm, onCancel }) => {
+const ConfirmationPopup = (props) => {
   return (
     <div style={{ textAlign: 'center' }}>
-      <h3>{title}</h3>
-      <p style={{ margin: '2rem' }}>{body}</p>
+      <h3>{props.title}</h3>
+      <div style={{ margin: '2rem' }}>{props.children}</div>
       <div style={{ display: 'flex', gap: '1rem', margin: '0 auto', width: 'max-content' }}>
-        <Button onClick={onConfirm}>Do it</Button>
-        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={props.onConfirm}>{props.confirmText || 'Do it'}</Button>
+        <Button onClick={props.onCancel}>Cancel</Button>
       </div>
     </div>
   )
