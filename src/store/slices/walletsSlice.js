@@ -86,12 +86,12 @@ const walletsSlice = createSlice({
     },
     addAmount: {
       reducer (state, action) {
-        const { walletId, coinId, coinName, totalAmount } = action.payload
+        const { walletId, coinId, totalAmount } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
           const existingCoinIndex = existingWallet.coins.findIndex((coin) => coin.id === coinId)
           if (existingCoinIndex === -1) {
-            existingWallet.coins.push({ id: coinId, name: coinName, amount: totalAmount })
+            existingWallet.coins.push({ id: coinId, amount: totalAmount })
           } else {
             existingWallet.coins[existingCoinIndex].amount += totalAmount
           }

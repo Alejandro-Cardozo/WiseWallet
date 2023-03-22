@@ -7,6 +7,7 @@ import {
   removeTransaction,
   editTransaction
 } from '../../store/slices/transactionsSlice'
+import { addAmount, subtractAmount } from '../../store/slices/walletsSlice'
 // Components
 import TimeAgo from '../UI/TimeAgo'
 import ConfirmationPopup from '../UI/ConfirmationPopup'
@@ -44,6 +45,22 @@ const WalletTransactions = ({ walletId }) => {
     dispatcher(editTransaction(editedTransaction))
     setShowModal((prevState) => !prevState)
   }
+
+  const handleChangeStatus = (newStatus, transactionType, data) => {
+    dispatcher(editTransaction({ ...selectedTransaction, status: newStatus }))
+    if (newStatus === 'approved') {
+      if (transactionType === 'buy') {
+        dispatcher(addAmount(data))
+      } else if (transactionType === 'sell') {
+        dispatcher(subtractAmount(data))
+      }
+    }
+    setShowModal((prevState) => !prevState)
+  }
+
+  if (!transactions.length) {
+    return <p>No transactions to show</p>
+  }
   return (
     <div className={classes['transactions-table']}>
       <h4>Transactions</h4>
@@ -71,7 +88,9 @@ const WalletTransactions = ({ walletId }) => {
               <td>${transaction.price}</td>
               <td>{transaction.status}</td>
               <td>
-                <button onClick={handleToggleModal.bind(null, 'edit', transaction)}>edt</button>
+                {transaction.status === 'pending' && (
+                  <button onClick={handleToggleModal.bind(null, 'edit', transaction)}>edt</button>
+                )}
                 <button onClick={handleToggleModal.bind(null, 'delete', transaction)}>dlt</button>
               </td>
             </tr>
@@ -83,6 +102,7 @@ const WalletTransactions = ({ walletId }) => {
           {modalAction === 'edit' && (
             <EditTransactionForm
               handleEditTransaction={handleEditTransaction}
+              handleChangeStatus={handleChangeStatus}
               handleToggleModal={handleToggleModal}
               walletId={walletId}
               transaction={selectedTransaction}

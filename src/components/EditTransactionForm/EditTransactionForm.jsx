@@ -10,6 +10,7 @@ import classes from './EditTransactionForm.module.css'
 
 const EditTransactionForm = ({
   handleEditTransaction,
+  handleChangeStatus,
   handleToggleModal,
   walletId,
   transaction
@@ -71,11 +72,19 @@ const EditTransactionForm = ({
         <hr />
         <Button
           disabled={`${amount}` !== `${currentAmount}`}
-          onClick={() => console.log('confirm')}
+          onClick={() =>
+            handleChangeStatus('approved', transactionType, {
+              walletId,
+              coinId,
+              totalAmount: amount
+            })}
         >
-          Confirm Transaction
+          Approve Transaction
         </Button>
-        <Button disabled={`${amount}` !== `${currentAmount}`} onClick={() => console.log('cancel')}>
+        <Button
+          disabled={`${amount}` !== `${currentAmount}`}
+          onClick={() => handleChangeStatus('canceled')}
+        >
           Cancel Transaction
         </Button>
       </div>

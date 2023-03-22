@@ -22,7 +22,7 @@ const initialState = [
     asset: 'dot',
     amount: 1,
     price: 6.4,
-    status: 'succeeded'
+    status: 'approved'
   },
   {
     id: 'transaction-3',
@@ -33,7 +33,7 @@ const initialState = [
     asset: 'usdc',
     amount: 4,
     price: 4.01,
-    status: 'failed'
+    status: 'canceled'
   }
 ]
 
