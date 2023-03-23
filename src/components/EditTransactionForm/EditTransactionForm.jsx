@@ -69,7 +69,7 @@ const EditTransactionForm = ({
         >
           Edit
         </Button>
-        <hr />
+        <hr className={classes.ruler} />
         <Button
           disabled={`${amount}` !== `${currentAmount}`}
           onClick={() =>
@@ -82,6 +82,7 @@ const EditTransactionForm = ({
           Approve Transaction
         </Button>
         <Button
+          styled={['outlined']}
           disabled={`${amount}` !== `${currentAmount}`}
           onClick={() => handleChangeStatus('canceled')}
         >

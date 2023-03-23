@@ -8,7 +8,7 @@ const ConfirmationPopup = (props) => {
       <div style={{ margin: '2rem' }}>{props.children}</div>
       <div style={{ display: 'flex', gap: '1rem', margin: '0 auto', width: 'max-content' }}>
         <Button onClick={props.onConfirm}>{props.confirmText || 'Do it'}</Button>
-        <Button onClick={props.onCancel}>Cancel</Button>
+        <Button styled={['outlined']} onClick={props.onCancel}>Cancel</Button>
       </div>
     </div>
   )

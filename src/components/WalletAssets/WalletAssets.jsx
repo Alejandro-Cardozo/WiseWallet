@@ -53,7 +53,7 @@ const WalletAssets = ({ walletCoins }) => {
 
   return (
     <div className={classes['assets-table']} id='assets-table'>
-      <h3 className={classes['table-title']}>Assets</h3>
+      <h4 className={classes['table-title']}>Assets</h4>
       <table cellSpacing={0}>
         <thead>
           <tr>
@@ -80,7 +80,7 @@ const WalletAssets = ({ walletCoins }) => {
               <td>{getBalanceValue(walletCoins, coinMarket)}</td>
               <td>${coinMarket.current_price.toFixed(2)}</td>
               <td
-                className={coinMarket.price_change_percentage_24h > 0 ? classes.up : classes.down}
+                className={coinMarket.price_change_percentage_24h < 0 ? classes.down : classes.up}
               >
                 {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
                 {coinMarket.price_change_percentage_24h?.toFixed(2)}

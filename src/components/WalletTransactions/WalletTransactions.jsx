@@ -110,11 +110,13 @@ const WalletTransactions = ({ walletId }) => {
           )}
           {modalAction === 'delete' && (
             <ConfirmationPopup
-              title='are u sure?'
+              title='Delete Transaction?'
               onConfirm={handleDeleteTransaction}
               onCancel={handleToggleModal}
             >
-              <p>u sure, dude?</p>
+              <p style={{ fontSize: 'var(--font-size-sm)', lineHeight: 'var(--line-height-sm)' }}>
+                this action is irreversible and cannot be undone. Are you're sure?
+              </p>
             </ConfirmationPopup>
           )}
         </Modal>

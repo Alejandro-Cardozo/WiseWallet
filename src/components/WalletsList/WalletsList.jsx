@@ -21,7 +21,7 @@ const WalletsList = ({ OnAddWallet }) => {
   return (
     <section>
       <div className={classes.header}>
-        <h3>My Wallets</h3>
+        <h4>My Wallets</h4>
         <Button onClick={OnAddWallet}>+ Add Wallet</Button>
       </div>
       <div className={classes.list}>

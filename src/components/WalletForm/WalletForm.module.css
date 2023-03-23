@@ -27,7 +27,7 @@
 }
 
 .form-control:focus {
-  border-color: var(--color-primary-lighter);
+  border-color: var(--color-primary-lightest);
   outline: 0;
   box-shadow: 0 0 0 0.2rem var(--color-primary-lightest);
 }

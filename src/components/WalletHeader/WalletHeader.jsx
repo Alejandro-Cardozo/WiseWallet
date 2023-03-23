@@ -37,10 +37,16 @@ const WalletHeader = ({ name, id, totalBalance }) => {
           <h2>${totalBalance}</h2>
         </div>
         <div className={classes['header-buttons']}>
-          <Button styled={['sm', 'outlined-secondary']} onClick={handleToggleModal.bind(null, 'edit')}>
+          <Button
+            styled={['sm', 'outlined-secondary']}
+            onClick={handleToggleModal.bind(null, 'edit')}
+          >
             edit
           </Button>
-          <Button styled={['sm', 'outlined-secondary']} onClick={handleToggleModal.bind(null, 'delete')}>
+          <Button
+            styled={['sm', 'outlined-secondary']}
+            onClick={handleToggleModal.bind(null, 'delete')}
+          >
             delete
           </Button>
         </div>
@@ -52,10 +58,14 @@ const WalletHeader = ({ name, id, totalBalance }) => {
           )}
           {modalAction === 'delete' && (
             <ConfirmationPopup
-              title='Are you sure you want to delete this wallet?'
+              title='Delete Wallet?'
               onConfirm={handleDeleteWallet}
               onCancel={handleToggleModal}
-            ><p>This action is irreversible!</p>
+            >
+              <p style={{ fontSize: 'var(--font-size-sm)', lineHeight: 'var(--line-height-sm)' }}>
+                Are you sure you want to delete this wallet? Any unclaimed funds will be lost in
+                limbo, and will probably end up in the pockets of a filthy politician.
+              </p>
             </ConfirmationPopup>
           )}
         </Modal>

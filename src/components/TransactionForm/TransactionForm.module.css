@@ -25,9 +25,16 @@
 }
 
 .form-control:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-lightest);
   outline: 0;
-  box-shadow: 0 0 0 .2rem var(--color-primary-light);
+  box-shadow: 0 0 0 .2rem var(--color-primary-lightest);
+}
+
+.form-control:disabled {
+  background-color: white;
+  color: slategray;
+  border-color: gainsboro;
+  cursor: not-allowed;
 }
 
 .label {
