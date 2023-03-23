@@ -5,6 +5,7 @@ import useCoinsData from '../../hooks/useCoinsData'
 import { selectAllWallets, selectAllCoinsInWallets } from '../../store/slices/walletsSlice'
 // Components
 import Button from '../UI/Button'
+import EmptyWalletList from './EmptyWalletList'
 import WalletCard from './WalletCard'
 // Styles
 import classes from './WalletsList.module.css'
@@ -14,6 +15,8 @@ const WalletsList = ({ OnAddWallet }) => {
   const coinsInWallets = useSelector(selectAllCoinsInWallets)
 
   const { data, isSuccess, error, isError, isLoading } = useCoinsData(coinsInWallets.join(','))
+
+  if (!wallets.length) return <EmptyWalletList onClick={OnAddWallet} classes={classes} />
 
   return (
     <section>
