@@ -6,6 +6,8 @@ import { useGetCoinsMarketsQuery } from '../../store/api/apiSlice'
 import { getCoinBalance, getBalanceValue } from './WalletAssets.helpers'
 // Data
 import { coinsMarketsQueryParams } from '../../data/data'
+// Components
+import Button from '../UI/Button'
 // Styles
 import classes from './WalletAssets.module.css'
 
@@ -42,8 +44,8 @@ const WalletAssets = ({ walletCoins }) => {
 
   return (
     <div className={classes['assets-table']} id='assets-table'>
-      <h3>Assets</h3>
-      <table>
+      <h3 className={classes['table-title']}>Assets</h3>
+      <table cellSpacing={0}>
         <thead>
           <tr>
             <th>Coin</th>
@@ -57,15 +59,24 @@ const WalletAssets = ({ walletCoins }) => {
         <tbody>
           {coinsMarket.map((coinMarket) => (
             <tr key={coinMarket.id} onClick={() => navigate(`coin/${coinMarket.id}`)}>
-              <td>{coinMarket.name}</td>
+              <td>
+                <div className={classes.coin} title={coinMarket.name}>
+                  <img src={coinMarket.image} alt='coin thumbnail' width={25} height={25} />
+                  <p className={classes['coin-name']}>{coinMarket.name}</p>
+                </div>
+              </td>
               <td>
                 {getCoinBalance(walletCoins, coinMarket)} {coinMarket.symbol}
               </td>
               <td>{getBalanceValue(walletCoins, coinMarket)}</td>
               <td>${coinMarket.current_price.toFixed(2)}</td>
-              <td>
+              <td
+                className={
+                  coinMarket.price_change_percentage_24h > 0 ? classes.up : classes.down
+                }
+              >
                 {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
-                {coinMarket.price_change_percentage_24h.toFixed(2)}
+                {coinMarket.price_change_percentage_24h?.toFixed(2)}
               </td>
               <td>--/--/\--\/-</td>
             </tr>
@@ -73,16 +84,18 @@ const WalletAssets = ({ walletCoins }) => {
         </tbody>
         <tfoot>
           <tr>
-            <td rowSpan='6'>
-              <button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
-                Previous
-              </button>
-              <button
-                onClick={handleNextPage}
-                disabled={coinsMarket.length < coinsMarketsQueryParams.per_page || isFetching}
-              >
-                Next
-              </button>
+            <td colSpan={6}>
+              <div className={classes['action-buttons']}>
+                <Button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
+                  &larr;  Previous
+                </Button>
+                <Button
+                  onClick={handleNextPage}
+                  disabled={coinsMarket.length < coinsMarketsQueryParams.per_page || isFetching}
+                >
+                  Next &rarr;
+                </Button>
+              </div>
             </td>
           </tr>
         </tfoot>

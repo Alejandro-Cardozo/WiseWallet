@@ -3,7 +3,7 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 // Components
 import Button from '../../components/UI/Button'
 
-export default function ErrorPage() {
+export default function ErrorPage () {
   const navigate = useNavigate()
   const error = useRouteError()
 

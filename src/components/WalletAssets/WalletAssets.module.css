@@ -1,21 +1,67 @@
 .assets-table {
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 0 1rem;
   flex: 3;
+  color: var(--color-primary-lightest);
 }
 
-.assets-table > table{
+.assets-table > .table-title {
+  color: var(--color-primary);
+}
+
+.assets-table > table {
   width: 100%;
 }
 
 .assets-table > table > thead {
   text-align: justify;
+  color: var(--color-primary-lighter);
 }
 
 .assets-table > table > tbody > tr {
   cursor: pointer;
 }
 
+.assets-table > table > tbody > tr > td,
+.assets-table > table > tfoot > tr > td,
+.assets-table > table > thead > tr > th {
+  padding: 1rem;
+}
+
 .assets-table > table > tbody > tr:hover {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+}
+
+.coin {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.coin-name {
+  width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.up {
+  color: mediumaquamarine;
+}
+
+.assets-table > table > tbody > tr:hover > .up,
+.assets-table > table > tbody > tr:hover > .down {
+  color: var(--color-light);
+}
+
+.down {
+  color: Salmon;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
