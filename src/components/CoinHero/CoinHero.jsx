@@ -20,12 +20,12 @@ const CoinHero = ({ walletId, coinInWallet, coinData }) => {
   return (
     <div className={classes['coin-details']}>
       <div className={classes['coin-details__header']}>
-        <img src={image.small} alt={`${name} thumbnail`} />
-        <p>{name}</p>
+        <img src={image.large} alt={`${name} thumbnail`} />
+        <h4>{name}</h4>
       </div>
-      <div className='coin-details__balance'>
+      <div className={classes['coin-details__balance']}>
         <p>
-          {coinInWallet ? coinInWallet.amount.toFixed(2) : 0} {symbol}
+          <span>{coinInWallet ? coinInWallet.amount.toFixed(2) : 0}</span> {symbol.toUpperCase()}
         </p>
         <p>${coinInWallet ? (coinInWallet.amount * marketData.current_price.usd).toFixed(2) : 0}</p>
       </div>

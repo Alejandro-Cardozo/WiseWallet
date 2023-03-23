@@ -6,6 +6,7 @@ import { useGetCoinQuery } from '../../store/api/apiSlice'
 import { selectWalletById } from '../../store/slices/walletsSlice'
 // Components
 import CoinHero from '../../components/CoinHero/CoinHero'
+import Button from '../../components/UI/Button'
 
 const CoinDetails = () => {
   const { walletId, coinId } = useParams()
@@ -22,7 +23,7 @@ const CoinDetails = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>&larr; Go back to {wallet.name}</button>
+      <Button styled={['button-link']} onClick={() => navigate(-1)}>&larr; Go back to {wallet.name}</Button>
       <CoinHero walletId={walletId} coinInWallet={coinInWallet} coinData={data} />
     </>
   )
