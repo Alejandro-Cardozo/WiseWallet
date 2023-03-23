@@ -8,6 +8,7 @@ import { getCoinBalance, getBalanceValue } from './WalletAssets.helpers'
 import { coinsMarketsQueryParams } from '../../data/data'
 // Components
 import Button from '../UI/Button'
+import { Sparklines, SparklinesLine } from 'react-sparklines'
 // Styles
 import classes from './WalletAssets.module.css'
 
@@ -26,9 +27,17 @@ const WalletAssets = ({ walletCoins }) => {
   })
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return (
+      <div className={classes['assets-table']}>
+        <p>Loading...</p>
+      </div>
+    )
   } else if (isError) {
-    return <p>Something went wrong: {error.message || 'error'}</p>
+    return (
+      <div className={classes['assets-table']}>
+        <p>Something went wrong: {error.message || 'error'}</p>
+      </div>
+    )
   }
 
   const handleNextPage = () => {
@@ -71,14 +80,18 @@ const WalletAssets = ({ walletCoins }) => {
               <td>{getBalanceValue(walletCoins, coinMarket)}</td>
               <td>${coinMarket.current_price.toFixed(2)}</td>
               <td
-                className={
-                  coinMarket.price_change_percentage_24h > 0 ? classes.up : classes.down
-                }
+                className={coinMarket.price_change_percentage_24h > 0 ? classes.up : classes.down}
               >
                 {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
                 {coinMarket.price_change_percentage_24h?.toFixed(2)}
               </td>
-              <td>--/--/\--\/-</td>
+              <td>
+                <div className='sparkline' style={{ width: 'calc(100% - 5rem)' }}>
+                  <Sparklines data={coinMarket.sparkline_in_7d?.price}>
+                    <SparklinesLine color='var(--color-secondary-light)' />
+                  </Sparklines>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -87,7 +100,7 @@ const WalletAssets = ({ walletCoins }) => {
             <td colSpan={6}>
               <div className={classes['action-buttons']}>
                 <Button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
-                  &larr;  Previous
+                  &larr; Previous
                 </Button>
                 <Button
                   onClick={handleNextPage}
