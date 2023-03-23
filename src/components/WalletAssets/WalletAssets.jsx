@@ -67,7 +67,11 @@ const WalletAssets = ({ walletCoins }) => {
         </thead>
         <tbody>
           {coinsMarket.map((coinMarket) => (
-            <tr key={coinMarket.id} onClick={() => navigate(`coin/${coinMarket.id}`)}>
+            <tr
+              style={{ fontWeight: getCoinBalance(walletCoins, coinMarket) > 0 ? '700' : '400' }}
+              key={coinMarket.id}
+              onClick={() => navigate(`coin/${coinMarket.id}`)}
+            >
               <td>
                 <div className={classes.coin} title={coinMarket.name}>
                   <img src={coinMarket.image} alt='coin thumbnail' width={25} height={25} />

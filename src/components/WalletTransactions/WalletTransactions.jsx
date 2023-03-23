@@ -13,6 +13,8 @@ import TimeAgo from '../UI/TimeAgo'
 import ConfirmationPopup from '../UI/ConfirmationPopup'
 import EditTransactionForm from '../EditTransactionForm'
 import Modal from '../UI/Modal'
+// Icons
+import { Pencil, Trash, Hourglass, X, Check } from '@phosphor-icons/react'
 // Styles
 import classes from './WalletTransactions.module.css'
 
@@ -58,6 +60,12 @@ const WalletTransactions = ({ walletId }) => {
     setShowModal((prevState) => !prevState)
   }
 
+  const statusIcons = {
+    pending: <Hourglass size={16} color='gray' />,
+    approved: <Check size={16} color='green' />,
+    canceled: <X size={16} color='#ff0000' />
+  }
+
   if (!transactions.length) {
     return <p>No transactions to show</p>
   }
@@ -72,26 +80,45 @@ const WalletTransactions = ({ walletId }) => {
             <th>Asset</th>
             <th>Amount</th>
             <th>Price</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th style={{ textAlign: 'center' }}>Status</th>
+            <th style={{ textAlign: 'center' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
           {transactions.map((transaction) => (
             <tr key={transaction.id}>
-              <td>{transaction.type}</td>
+              <td>
+                {transaction.type === 'buy' ? '⬇' : '⬆'}
+                {transaction.type}
+              </td>
               <td>
                 <TimeAgo timestamp={transaction.date} />
               </td>
               <td>{transaction.asset}</td>
               <td>{transaction.amount}</td>
               <td>${transaction.price}</td>
-              <td>{transaction.status}</td>
               <td>
+                <div className={classes.centered} title={transaction.status.toUpperCase()}>
+                  {statusIcons[transaction.status]}
+                </div>
+              </td>
+              <td className={classes.centered}>
                 {transaction.status === 'pending' && (
-                  <button onClick={handleToggleModal.bind(null, 'edit', transaction)}>edt</button>
+                  <button
+                    title='Edit'
+                    className={classes['action-btn']}
+                    onClick={handleToggleModal.bind(null, 'edit', transaction)}
+                  >
+                    <Pencil size={16} color='var(--color-primary-lightest)' weight='fill' />
+                  </button>
                 )}
-                <button onClick={handleToggleModal.bind(null, 'delete', transaction)}>dlt</button>
+                <button
+                  title='Delete'
+                  className={classes['action-btn']}
+                  onClick={handleToggleModal.bind(null, 'delete', transaction)}
+                >
+                  <Trash size={16} color='var(--color-primary-lightest)' weight='fill' />
+                </button>
               </td>
             </tr>
           ))}
@@ -115,7 +142,7 @@ const WalletTransactions = ({ walletId }) => {
               onCancel={handleToggleModal}
             >
               <p style={{ fontSize: 'var(--font-size-sm)', lineHeight: 'var(--line-height-sm)' }}>
-                this action is irreversible and cannot be undone. Are you're sure?
+                This action is irreversible and cannot be undone. Are you're sure?
               </p>
             </ConfirmationPopup>
           )}

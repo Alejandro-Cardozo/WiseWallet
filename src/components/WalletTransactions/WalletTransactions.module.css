@@ -2,12 +2,40 @@
   overflow-y: auto;
   overflow-x: hidden;
   flex: 3;
+  color: var(--color-primary-lightest);
+  margin-top: 3rem;
+}
+
+.transactions-table h4 {
+  color: var(--color-primary-light)
 }
 
 .transactions-table > table{
   width: 100%;
+  font-size: var(--font-size-sm)
 }
 
 .transactions-table > table > thead {
   text-align: justify;
+  color: var(--color-primary-lighter)
+}
+
+.transactions-table > table > tbody > tr > td,
+.transactions-table > table > tfoot > tr > td,
+.transactions-table > table > thead > tr > th {
+  padding: .4rem;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  gap: .2rem; 
+}
+
+.action-btn {
+  border: 1px solid var(--color-primary-lightest);
+  background-color: var(--color-light);
+  padding: .5rem;
+  border-radius: 5px;
+  cursor: pointer;
 }

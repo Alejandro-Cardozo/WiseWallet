@@ -31,6 +31,12 @@
   --line-height-lg: 1.9;
 }
 
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-light)
+}
+
+
 *,
 *::before,
 *::after {

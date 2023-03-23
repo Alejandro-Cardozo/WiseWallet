@@ -41,13 +41,13 @@ const WalletHeader = ({ name, id, totalBalance }) => {
             styled={['sm', 'outlined-secondary']}
             onClick={handleToggleModal.bind(null, 'edit')}
           >
-            edit
+            Edit
           </Button>
           <Button
             styled={['sm', 'outlined-secondary']}
             onClick={handleToggleModal.bind(null, 'delete')}
           >
-            delete
+            Delete
           </Button>
         </div>
       </article>
