@@ -18,11 +18,16 @@ const WalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (walletNewName && walletNewName.length >= 3 && walletNewName.length <= 25) {
+    const formattedWalletName = walletNewName.trim().replace(/\s\s+/g, ' ')
+    if (
+      formattedWalletName &&
+      formattedWalletName.length >= 3 &&
+      formattedWalletName.length <= 25
+    ) {
       if (isNew) {
         dispatch(addWallet(walletNewName))
       } else {
-        dispatch(editWallet({ walletId, walletNewName }))
+        dispatch(editWallet({ walletId, formattedWalletName }))
       }
       setWalletNewName('')
       onClose()
@@ -40,8 +45,8 @@ const WalletForm = ({ onClose, isNew = false, walletName = '', walletId }) => {
           id='name'
           minLength={3}
           maxLength={25}
-          pattern='\w{3,25}'
-          title='Alphabet characters, numbers and underscores'
+          pattern='[a-zA-Z0-9\s]+'
+          title='Alphanumeric with Spaces'
           placeholder='My Awesome Wallet'
           required
           autoFocus

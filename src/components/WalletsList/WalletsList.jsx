@@ -26,7 +26,7 @@ const WalletsList = ({ OnAddWallet }) => {
         {isError && <p>{error.message || 'error'}</p>}
         {isSuccess &&
           wallets.map((wallet) => (
-            <WalletCard key={wallet.id} coinsData={data} wallet={wallet} classes={classes.card} />
+            <WalletCard key={wallet.id} coinsData={data} wallet={wallet} classes={classes} />
           ))}
       </div>
     </section>

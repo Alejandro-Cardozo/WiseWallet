@@ -8,13 +8,13 @@ import classes from './Layout.module.css'
 
 const Layout = () => {
   return (
-    <>
+    <div className={classes.container}>
       <Header />
-      <main className={classes.container}>
+      <main className={classes.body}>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 export default Layout

@@ -1,5 +1,6 @@
 // Hooks
 import { useNavigate } from 'react-router-dom'
+// Components
 import CoinsStack from '../UI/CoinsStack/CoinsStack'
 
 const WalletCard = ({ coinsData, wallet, classes }) => {
@@ -16,10 +17,13 @@ const WalletCard = ({ coinsData, wallet, classes }) => {
   const coinsImages = coinsInWallet.map((obj) => obj.image)
 
   return (
-    <article className={classes} onClick={() => navigate(`/wallet/${id}`)}>
-      <h4>{name}</h4>
-      <p>${totalBalance.toFixed(2)}</p>
-      <CoinsStack coinsImages={coinsImages} />
+    <article className={classes.card} onClick={() => navigate(`/wallet/${id}`)}>
+      <div className={classes.card__cover}>
+        <h6 className={classes.card__name}>{name}</h6>
+        <p className={classes.card__balance}>${totalBalance.toFixed(2)}</p>
+        <CoinsStack coinsImages={coinsImages} />
+        <img className={classes.card__watermark} src='/favicon.svg' alt='watermark' />
+      </div>
     </article>
   )
 }
