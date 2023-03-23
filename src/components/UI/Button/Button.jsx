@@ -2,19 +2,10 @@
 import classes from './Button.module.css'
 
 const Button = (props) => {
-  const btnClasses = (() => {
-    switch (props.size) {
-      case 'sm':
-        return `${classes.btn} ${classes['btn-sm']}`
-      case 'lg':
-        return `${classes.btn} ${classes['btn-lg']}`
-      default:
-        return `${classes.btn}`
-    }
-  })()
+  const btnClasses = props.styled ? props.styled.map((style) => classes[style]) : null
 
   return (
-    <button {...props} className={btnClasses}>
+    <button {...props} className={`${btnClasses ? btnClasses.join(' ') : ''} ${classes.btn}`}>
       {props.children}
     </button>
   )

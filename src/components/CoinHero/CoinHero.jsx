@@ -30,11 +30,11 @@ const CoinHero = ({ walletId, coinInWallet, coinData }) => {
         <p>${coinInWallet ? (coinInWallet.amount * marketData.current_price.usd).toFixed(2) : 0}</p>
       </div>
       <div className={classes['coin-details__action-buttons']}>
-        <Button size='lg' onClick={handleToggleModal.bind(null, 'buy')}>
+        <Button styled={['lg']} onClick={handleToggleModal.bind(null, 'buy')}>
           BUY
         </Button>
         {coinInWallet?.amount > 0 && (
-          <Button size='lg' onClick={handleToggleModal.bind(null, 'sell')}>
+          <Button styled={['lg']} onClick={handleToggleModal.bind(null, 'sell')}>
             SELL
           </Button>
         )}

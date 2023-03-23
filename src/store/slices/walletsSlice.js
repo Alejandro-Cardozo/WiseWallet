@@ -1,17 +1,40 @@
 // Utilities
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = [
+  {
+    id: 'wallet-1',
+    name: 'Gola',
+    coins: [
+      {
+        id: 'solana',
+        amount: 64
+      },
+      {
+        id: 'ripple',
+        amount: 12
+      },
+      {
+        id: 'usd-coin',
+        amount: 4
+      },
+      {
+        id: 'polkadot',
+        amount: 20
+      }
+    ]
+  }
+]
 
 const walletsSlice = createSlice({
   name: 'wallets',
   initialState,
   reducers: {
     addWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         state.push(action.payload)
       },
-      prepare (name) {
+      prepare(name) {
         return {
           payload: {
             id: nanoid(),
@@ -22,7 +45,7 @@ const walletsSlice = createSlice({
       }
     },
     editWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         const { walletId, walletNewName } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
@@ -33,13 +56,13 @@ const walletsSlice = createSlice({
       }
     },
     deleteWallet: {
-      reducer (state, action) {
+      reducer(state, action) {
         const walletIndex = state.findIndex((wallet) => wallet.id === action.payload)
         state.splice(walletIndex, 1)
       }
     },
     addAmount: {
-      reducer (state, action) {
+      reducer(state, action) {
         const { walletId, coinId, totalAmount } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
@@ -53,7 +76,7 @@ const walletsSlice = createSlice({
       }
     },
     subtractAmount: {
-      reducer (state, action) {
+      reducer(state, action) {
         const { walletId, coinId, totalAmount } = action.payload
         const existingWallet = state.find((wallet) => wallet.id === walletId)
         if (existingWallet) {
