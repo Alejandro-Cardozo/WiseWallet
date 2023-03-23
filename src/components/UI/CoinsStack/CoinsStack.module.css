@@ -6,6 +6,7 @@
 .coins-stack__images {
   display: flex;
   flex-direction: row-reverse;
+  margin-right: .5rem;
 }
 
 .coins-stack__images-img {

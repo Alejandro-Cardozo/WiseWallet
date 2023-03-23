@@ -62,7 +62,7 @@ const WalletAssets = ({ walletCoins }) => {
             <th>Value</th>
             <th>Price</th>
             <th>24h</th>
-            <th>7 days chart</th>
+            <th className={classes['hide-on-mobile']}>7 days chart</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +89,7 @@ const WalletAssets = ({ walletCoins }) => {
                 {coinMarket.price_change_percentage_24h > 0 ? '+' : ''}
                 {coinMarket.price_change_percentage_24h?.toFixed(2)}
               </td>
-              <td>
+              <td className={classes['hide-on-mobile']}>
                 <div className='sparkline' style={{ width: 'calc(100% - 5rem)' }}>
                   <Sparklines data={coinMarket.sparkline_in_7d?.price}>
                     <SparklinesLine color='var(--color-secondary-light)' />

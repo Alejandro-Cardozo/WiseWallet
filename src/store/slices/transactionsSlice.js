@@ -34,6 +34,94 @@ const initialState = [
     amount: 4,
     price: 4.01,
     status: 'canceled'
+  },
+  {
+    id: 'transaction-4',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-5',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-6',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-7',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-8',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-9',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-10',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
+  },
+  {
+    id: 'transaction-11',
+    walletId: 'wallet-1',
+    coinId: 'usd-coin',
+    type: 'Buy',
+    date: new Date().toISOString(),
+    asset: 'usdc',
+    amount: 4,
+    price: 4.01,
+    status: 'canceled'
   }
 ]
 

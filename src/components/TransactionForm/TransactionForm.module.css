@@ -27,7 +27,7 @@
 .form-control:focus {
   border-color: var(--color-primary-lightest);
   outline: 0;
-  box-shadow: 0 0 0 .2rem var(--color-primary-lightest);
+  box-shadow: 0 0 0 0.2rem var(--color-primary-lightest);
 }
 
 .form-control:disabled {
@@ -43,7 +43,7 @@
 
 .label span {
   position: absolute;
-  top: .4rem;
+  top: 0.4rem;
   right: 2.5rem;
 }
 
@@ -59,4 +59,10 @@
 
 .close:hover {
   color: var(--color-primary);
+}
+
+@media only screen and (max-width: 1024px) {
+  .label span {
+    right: 3.5rem;
+  }
 }

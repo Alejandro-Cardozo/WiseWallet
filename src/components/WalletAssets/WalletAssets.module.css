@@ -2,7 +2,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0 1rem;
-  flex: 3;
+  flex: 4;
   color: var(--color-primary-lightest);
 }
 
@@ -44,7 +44,7 @@
   width: 15rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
 }
 
 .up {
@@ -64,4 +64,27 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+@media only screen and (max-width: 1600px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .assets-table > table {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .assets-table {
+    padding: 0;
+    max-height: 40vh;
+  }
+
+  .table-title {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-light);
+  }
 }

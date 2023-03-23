@@ -8,7 +8,9 @@ const WalletCard = ({ coinsData, wallet, classes }) => {
 
   const navigate = useNavigate()
 
-  const coinsInWallet = coinsData.filter((coin) => wallet.coins.some((el) => el.id === coin.id))
+  const coinsInWallet = coinsData.filter((coin) =>
+    wallet.coins.some((el) => el.id === coin.id && el.amount > 0)
+  )
 
   const totalBalance = coinsInWallet.reduce(
     (acc, el) => acc + el.current_price * wallet.coins.find((coin) => coin.id === el.id).amount,

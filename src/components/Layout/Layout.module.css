@@ -8,3 +8,22 @@
   margin: 2rem 5rem;
   flex-grow: 1;
 }
+
+@media only screen and (max-width: 1600px) {
+  .body {
+    min-height: calc(100vh - 14rem);
+    margin: 1rem 3rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .body {
+    margin: 1rem 2rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .body {
+    margin: 1rem 1rem;
+  }
+}

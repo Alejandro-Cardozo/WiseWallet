@@ -12,7 +12,7 @@
 
 .transactions-table > table{
   width: 100%;
-  font-size: var(--font-size-sm)
+  font-size: var(--font-size-xs)
 }
 
 .transactions-table > table > thead {
@@ -38,4 +38,16 @@
   padding: .5rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+  .transactions-table {
+    max-height: 20vh;
+  }
+
+  .transactions-table h4 {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-light)
+  }
 }

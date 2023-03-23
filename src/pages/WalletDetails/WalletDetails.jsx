@@ -8,6 +8,8 @@ import { selectAllCoinsInWallets, selectWalletById } from '../../store/slices/wa
 import WalletHeader from '../../components/WalletHeader'
 import WalletAssets from '../../components/WalletAssets'
 import WalletTransactions from '../../components/WalletTransactions'
+// Styles
+import classes from './WalletDetails.module.css'
 
 const WalletDetails = () => {
   const { walletId } = useParams()
@@ -30,8 +32,8 @@ const WalletDetails = () => {
   }
 
   return (
-    <div style={{ display: 'flex', gap: '4rem', height: '75vh' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 2 }}>
+    <div className={classes.container}>
+      <div className={classes.left}>
         {isLoading && <p>Loading...</p>}
         {isError && <p>{error.message || 'error'}</p>}
         {isSuccess && (
