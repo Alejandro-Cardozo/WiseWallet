@@ -7,7 +7,7 @@ import { apiSlice } from './api/apiSlice'
 
 const persistConfig = {
   key: 'root',
-  storage: storage
+  storage
 }
 
 const rootReducer = combineReducers({
@@ -20,7 +20,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    }).concat(apiSlice.middleware),
   devTools: true
 })
 
