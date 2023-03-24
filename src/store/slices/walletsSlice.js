@@ -1,34 +1,9 @@
 // Utilities
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
-const initialState = [
-  {
-    id: 'wallet-1',
-    name: 'Gola',
-    coins: [
-      {
-        id: 'solana',
-        amount: 64
-      },
-      {
-        id: 'ripple',
-        amount: 12
-      },
-      {
-        id: 'usd-coin',
-        amount: 4
-      },
-      {
-        id: 'polkadot',
-        amount: 20
-      }
-    ]
-  }
-]
-
 const walletsSlice = createSlice({
   name: 'wallets',
-  initialState,
+  initialState: [],
   reducers: {
     addWallet: {
       reducer (state, action) {

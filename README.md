@@ -1,7 +1,7 @@
 <div align="center">
-  <!-- <a href="https://guita.vercel.app/" rel="noopener"> -->
+  <a href="https://wisewallet.vercel.app/" rel="noopener">
     <img width=200px height=200px src="public/logo.png" alt="Project logo">
-  <!-- </a> -->
+  </a>
 </div>
 
 <h3 align="center">WiseWallet</h3>
@@ -31,6 +31,8 @@
 ## About <a name = "about"></a>
 
 This is a prototype of a virtual cryptocurrency wallet.
+
+[**Try out the demo!**](https://wisewallet.vercel.app/)
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -75,6 +77,6 @@ You can deploy this page to any development platform with serverless backend ser
 - [Redux](https://redux.js.org/) - A Predictable State Container for JS Apps
 - [React Router](https://reactrouter.com/en/main) - Client Side Routing Library
 
-## ✍️ Authors <a name = "authors"></a>
+## Authors <a name = "authors"></a>
 
 - [@alejandrocardozo](https://github.com/Alejandro-Cardozo) - Build and Design by
