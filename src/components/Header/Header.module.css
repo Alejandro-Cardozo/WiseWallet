@@ -15,11 +15,11 @@
   gap: 1rem;
 }
 
-.logo h1 {
+.logo__title {
   font-size: 3rem;
 }
 
-.logo img {
+.logo__image {
   width: 4rem;
   height: 4rem;
 }

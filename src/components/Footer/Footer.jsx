@@ -7,7 +7,7 @@ const Footer = () => {
       <p>
         Built and Designed by{' '}
         <a href='https://github.com/Alejandro-Cardozo' target='_blank' rel='noopener noreferrer'>
-          <span>Alejandro Cardozo</span>
+          <span className={classes.author}>Alejandro Cardozo</span>
         </a>
       </p>
     </footer>

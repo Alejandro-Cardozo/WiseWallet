@@ -8,8 +8,8 @@ const Header = () => {
     <header className={classes.header}>
       <Link to='/'>
         <div className={classes.logo}>
-          <img src='/favicon.svg' alt='wisewalletlogo' />
-          <h1>WiseWallet</h1>
+          <img className={classes.logo__image} src='/favicon.svg' alt='wisewalletlogo' />
+          <h1 className={classes.logo__title}>WiseWallet</h1>
         </div>
       </Link>
       <nav>

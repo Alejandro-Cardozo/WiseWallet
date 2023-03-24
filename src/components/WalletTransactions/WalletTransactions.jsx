@@ -12,6 +12,7 @@ import { addAmount, subtractAmount } from '../../store/slices/walletsSlice'
 import TimeAgo from '../UI/TimeAgo'
 import ConfirmationPopup from '../UI/ConfirmationPopup'
 import EditTransactionForm from '../EditTransactionForm'
+import EmptyTransactionsList from '../EmptyTransactionsList'
 import Modal from '../UI/Modal'
 // Icons
 import { Pencil, Trash, Hourglass, X, Check } from '@phosphor-icons/react'
@@ -63,12 +64,13 @@ const WalletTransactions = ({ walletId }) => {
   const statusIcons = {
     pending: <Hourglass size={16} color='gray' />,
     approved: <Check size={16} color='green' />,
-    canceled: <X size={16} color='#ff0000' />
+    canceled: <X size={16} color='red' />
   }
 
   if (!transactions.length) {
-    return <p>No transactions to show</p>
+    return <EmptyTransactionsList />
   }
+
   return (
     <div className={classes['transactions-table']}>
       <h4>Transactions</h4>
