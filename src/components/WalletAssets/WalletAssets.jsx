@@ -45,9 +45,11 @@ const WalletAssets = ({ walletCoins }) => {
   const handleSelectList = (e) => {
     if (e.target.value === 'all') {
       setListFetched('')
+      setPageFetched(1)
     }
     if (e.target.value === 'inWallet') {
       setListFetched(walletCoins.map((el) => el.id).join(','))
+      setPageFetched(1)
     }
   }
 
