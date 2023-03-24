@@ -6,8 +6,24 @@
   color: var(--color-primary-lightest);
 }
 
-.assets-table > .table-title {
+.assets-table > .table-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: last baseline;
+  gap: 2rem;
+  padding: 1rem 0;
+  background-color: var(--color-light);
+}
+
+.assets-table > .table-header > .table-title {
   color: var(--color-primary-light);
+}
+
+.assets-table > .table-header > .table-select {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary-lightest);
 }
 
 .assets-table > table {
@@ -80,11 +96,5 @@
   .assets-table {
     padding: 0;
     max-height: 40vh;
-  }
-
-  .table-title {
-    position: sticky;
-    top: 0;
-    background-color: var(--color-light);
   }
 }

@@ -15,6 +15,7 @@ import classes from './WalletAssets.module.css'
 const WalletAssets = ({ walletCoins }) => {
   const navigate = useNavigate()
   const [pageFetched, setPageFetched] = useState(1)
+  const [listFetched, setListFetched] = useState('')
   const {
     data: coinsMarket,
     isLoading,
@@ -23,7 +24,8 @@ const WalletAssets = ({ walletCoins }) => {
     error
   } = useGetCoinsMarketsQuery({
     ...coinsMarketsQueryParams,
-    page: `${pageFetched}`
+    page: `${pageFetched}`,
+    ids: listFetched || ''
   })
 
   if (isLoading) {
@@ -40,6 +42,15 @@ const WalletAssets = ({ walletCoins }) => {
     )
   }
 
+  const handleSelectList = (e) => {
+    if (e.target.value === 'all') {
+      setListFetched('')
+    }
+    if (e.target.value === 'inWallet') {
+      setListFetched(walletCoins.map((el) => el.id).join(','))
+    }
+  }
+
   const handleNextPage = () => {
     setPageFetched((page) => page + 1)
     document.getElementById('assets-table').scrollTo({ top: 0, left: 0, behavior: 'smooth' })
@@ -53,7 +64,15 @@ const WalletAssets = ({ walletCoins }) => {
 
   return (
     <div className={classes['assets-table']} id='assets-table'>
-      <h4 className={classes['table-title']}>Assets</h4>
+      <div className={classes['table-header']}>
+        <h4 className={classes['table-title']}>Assets</h4>
+        {walletCoins.length > 0 && (
+          <select className={classes['table-select']} name='list' id='list' onChange={handleSelectList}>
+            <option value='all'>All Coins</option>
+            <option value='inWallet'>In Wallet</option>
+          </select>
+        )}
+      </div>
       <table cellSpacing={0}>
         <thead>
           <tr>
@@ -103,15 +122,19 @@ const WalletAssets = ({ walletCoins }) => {
           <tr>
             <td colSpan={6}>
               <div className={classes['action-buttons']}>
-                <Button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
-                  &larr; Previous
-                </Button>
-                <Button
-                  onClick={handleNextPage}
-                  disabled={coinsMarket.length < coinsMarketsQueryParams.per_page || isFetching}
-                >
-                  Next &rarr;
-                </Button>
+                {pageFetched !== 1 && (
+                  <Button onClick={handlePreviousPage} disabled={pageFetched === 1 || isFetching}>
+                    &larr; Previous
+                  </Button>
+                )}
+                {coinsMarket.length >= coinsMarketsQueryParams.per_page && (
+                  <Button
+                    onClick={handleNextPage}
+                    disabled={coinsMarket.length < coinsMarketsQueryParams.per_page || isFetching}
+                  >
+                    Next &rarr;
+                  </Button>
+                )}
               </div>
             </td>
           </tr>
