@@ -1,13 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import storageSession from 'redux-persist/lib/storage/session'
-import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from 'redux-persist'
 import walletsReducer from './slices/walletsSlice'
 import transactionsReducer from './slices/transactionsSlice'
 import { apiSlice } from './api/apiSlice'
 
 const persistConfig = {
   key: 'root',
-  storage: storageSession
+  storage: storage
 }
 
 const rootReducer = combineReducers({
