@@ -1,7 +1,7 @@
 .container {
   display: flex;
   gap: 4rem;
-  height: 75vh;
+  min-height: 30rem;
 }
 
 .left {
@@ -11,10 +11,19 @@
   flex: 3;
 }
 
+@media only screen and (max-width: 1600px) {
+  .left {
+    flex: 1;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   .container {
     flex-direction: column;
     gap: 2rem;
-    height: auto;
+  }
+
+  .left {
+    flex: 1;
   }
 }

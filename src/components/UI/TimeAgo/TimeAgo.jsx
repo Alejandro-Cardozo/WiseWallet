@@ -1,5 +1,8 @@
+// Utilities
 import parseISO from 'date-fns/parseISO'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+// Styles
+import classes from './TimeAgo.module.css'
 
 const TimeAgo = ({ timestamp }) => {
   let timeAgo = ''
@@ -10,7 +13,7 @@ const TimeAgo = ({ timestamp }) => {
     timeAgo = `${timePeriod} ago`
   }
   return (
-    <span title={date} style={{ cursor: 'default' }}>
+    <span className={classes['time-ago']} title={date}>
       &nbsp; <i>{timeAgo}</i>
     </span>
   )

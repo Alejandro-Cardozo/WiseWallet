@@ -1,17 +1,16 @@
 .container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .body {
-  min-height: calc(100vh - 16rem);
   margin: 2rem 5rem;
   flex-grow: 1;
 }
 
 @media only screen and (max-width: 1600px) {
   .body {
-    min-height: calc(100vh - 14rem);
     margin: 1rem 3rem;
   }
 }

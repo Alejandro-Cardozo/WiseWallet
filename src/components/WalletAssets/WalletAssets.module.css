@@ -4,6 +4,7 @@
   padding: 0 1rem;
   flex: 4;
   color: var(--color-primary-lightest);
+  max-height: 60rem;
 }
 
 .assets-table > .table-header {
@@ -12,7 +13,7 @@
   display: flex;
   align-items: last baseline;
   gap: 2rem;
-  padding: 1rem 0;
+  padding: 0 0 1rem 0;
   background-color: var(--color-light);
 }
 
@@ -27,7 +28,8 @@
 }
 
 .assets-table > table {
-  width: 100%;
+  width: max-content;
+  width: -moz-available;
 }
 
 .assets-table > table > thead {
@@ -82,7 +84,17 @@
   gap: 1rem;
 }
 
+.hide-on-mobile {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 1600px) {
+  .assets-table {
+    padding: 0;
+    flex: 1;
+  }
+
   .hide-on-mobile {
     display: none;
   }
@@ -95,6 +107,34 @@
 @media only screen and (max-width: 1200px) {
   .assets-table {
     padding: 0;
-    max-height: 40vh;
+    flex: 2;
+  }
+
+  .hide-on-mobile {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .assets-table > table > tbody > tr > td,
+  .assets-table > table > tfoot > tr > td,
+  .assets-table > table > thead > tr > th {
+    padding: 0 1rem;
+  }
+  .hide-on-mobile {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .assets-table > table > tbody > tr > td,
+  .assets-table > table > tfoot > tr > td,
+  .assets-table > table > thead > tr > th {
+    padding: 1rem;
+  }
+  .hide-on-mobile {
+    display: none;
   }
 }
